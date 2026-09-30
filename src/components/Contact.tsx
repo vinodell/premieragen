@@ -97,10 +97,6 @@ export const Contact = () => {
               }}
               onChange={(event) => event.currentTarget.setCustomValidity("")}
             />
-            <span className="contact-field-hint" id="appointment-hint">
-              Необязательно. Время в вашем часовом поясе ({Intl.DateTimeFormat().resolvedOptions().timeZone}).
-              Подтвердим встречу после заявки.
-            </span>
           </label>
           <input type="hidden" name="timeZone" value={Intl.DateTimeFormat().resolvedOptions().timeZone} />
           <button className="button button-dark" type="submit">

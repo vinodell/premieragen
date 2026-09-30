@@ -97,7 +97,7 @@ h2 em {
     gap: 22px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--ink);
-    font: 11px 'DM Mono', monospace;
+    font: bold 20px 'DM Mono', monospace;
     text-transform: uppercase;
     white-space: nowrap;
     transition: gap .25s ease;
@@ -114,9 +114,9 @@ h2 {
 }
 
 .lead {
-    font-size: clamp(1.3rem, 2vw, 2rem);
-    line-height: 1.16;
+    font: bold 2rem 'DM Mono', monospace;
     letter-spacing: -.04em;
+    color: var(--teal);
 }
 
 @media (prefers-reduced-motion: reduce) {

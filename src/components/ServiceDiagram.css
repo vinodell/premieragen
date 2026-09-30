@@ -42,7 +42,7 @@
 
 .service-diagram-links path {
     fill: none;
-    stroke: var(--black);
+    stroke: var(--teal);
     stroke-width: 3;
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
@@ -62,7 +62,7 @@
     background: transparent;
     color: var(--blue);
     cursor: pointer;
-    font: 10px/1.5 'DM Mono', monospace;
+    font: bold 20px/1.5 'DM Mono', monospace;
     text-transform: uppercase;
 }
 

@@ -1,16 +1,18 @@
 .proof-section {
     display: grid;
     grid-template-columns: 42% 58%;
+    padding-top: 55px;
+    padding-bottom: 55px;
     min-height: 690px;
-    color: var(--pink);
-    background: var(--ink);
+    color: var(--ink);
+    background: var(--pink);
 }
 
 .proof-art {
     position: relative;
     overflow: hidden;
     min-height: 440px;
-    background: var(--pink);
+    background: var(--black);
     color: var(--ink);
 }
 
@@ -66,7 +68,7 @@
 .proof-grid span {
     display: block;
     margin-top: 8px;
-    color: var(--pink);
+    color: var(--ink);
     font: 10px 'DM Mono', monospace;
     text-transform: uppercase;
 }

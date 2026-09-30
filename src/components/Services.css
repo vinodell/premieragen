@@ -1,7 +1,7 @@
 .service-section {
-    padding-top: 110px;
-    padding-bottom: 140px;
-    background: var(--pink);
+    padding-top: 55px;
+    padding-bottom: 55px;
+    background: var(--black);
 }
 
 .section-heading-row {
@@ -48,8 +48,8 @@
 }
 
 .service-card.black {
-    color: var(--pink);
-    background: var(--black);
+    color: var(--blue);
+    background: var(--pink);
 }
 
 .card-top {

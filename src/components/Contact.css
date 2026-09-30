@@ -1,6 +1,8 @@
 .contact-section {
-    padding-top: 145px;
-    padding-bottom: 55px;
+    position: relative;
+    overflow: hidden;
+    padding: 55px 0;
+    background: var(--pink);
 }
 
 .contact-head h2 {
@@ -9,9 +11,10 @@
 
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 9vw;
-    margin-top: 100px;
+    grid-template-columns: minmax(0, 425px) minmax(0, 520px);
+    justify-content: space-between;
+    gap: clamp(40px, 9vw, 140px);
+    margin-top: 20px;
 }
 
 .contact-grid>div {
@@ -30,14 +33,37 @@
 }
 
 .contact-form {
+    position: relative;
+    z-index: 1;
+
     display: grid;
     gap: 28px;
-    max-width: 520px;
+
+    width: 100%;
+    padding: 40px 64px;
+
+    background: var(--black);
+}
+
+/* full-bleed background вправо */
+.contact-form::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    top: 0;
+    bottom: 0;
+    left: 100%;
+
+    width: 100vw;
+
+    background: var(--black);
 }
 
 .contact-form label {
     display: grid;
     gap: 10px;
+    color: var(--teal);
     font: 10px 'DM Mono', monospace;
     text-transform: uppercase;
 }
@@ -149,12 +175,6 @@
     max-width: 100%;
     min-height: 48px;
     color-scheme: light;
-}
-
-.contact-field-hint {
-    font: 12px/1.5 'Manrope', sans-serif;
-    text-transform: none;
-    color: var(--muted);
 }
 
 .contact-form input:focus-visible {

@@ -121,7 +121,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     role: "Ушел из дома",
     company: "Компания / E-commerce",
     service: "хуярить пивко на диване",
-    quote: "Появилось ощущение....",
+    quote: "Появилось ощущение... хочется посрать в унитаз, а не в штаны. В целом, доволен.",
   },
 ];
 

@@ -1,6 +1,6 @@
 .testimonials {
-    padding-top: clamp(80px, 9vw, 150px);
-    padding-bottom: clamp(70px, 7vw, 120px);
+    padding-top: clamp(80px, 9vw, 55px);
+    padding-bottom: clamp(70px, 7vw, 55px);
     background: var(--pink);
 }
 

@@ -14,15 +14,9 @@ import {
 import "./styles.css";
 
 // TODO:
-// Contacts component
-// 1) иконка телеги в контакты
-// 2) что нужно улучшить - взять из premieragen
-// 3) часы работы
-
-// Intro component
-// 1) добавить блок схему интерактивную
-
-// Team component?
+// сетку наложить на фон блок-схемы в ServiceDiagrams
+// покрутить еще рыжий на Contacts
+// Катины фотокарточки покрутить
 
 function App() {
   return (

@@ -2,7 +2,8 @@
     display: flex;
     gap: 12px;
     align-items: center;
-    font: 10px 'DM Mono', monospace;
+    font: 14px 'DM Mono', monospace;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: .06em;
     color: var(--muted);

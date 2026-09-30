@@ -1,6 +1,13 @@
 .intro {
-    padding-top: 155px;
-    padding-bottom: 190px;
+    padding-top: 55px;
+    padding-bottom: 55px;
+    background-color: var(--pink);
+
+    background-image:
+    linear-gradient(to right, #221b1b 1px, transparent 1px),
+    linear-gradient(to bottom, #221b1b 1px, transparent 1px);
+
+  background-size: 40px 40px;
 }
 
 .intro-grid {
