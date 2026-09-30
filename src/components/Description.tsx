@@ -1,7 +1,8 @@
 import { ServiceDiagram } from "./ServiceDiagram";
-import "./Description.css";
 import { SECTION_IDS, SECTION_LABELS } from "../consts";
 import { SectionKicker } from "./SectionKicker";
+
+import "./Description.css";
 
 export const Description = () => {
   return (

@@ -6,6 +6,7 @@ import {
   SERVICE_DIAGRAM_NODES,
   SERVICE_DIAGRAM_STEP_MS,
 } from "../consts";
+
 import "./ServiceDiagram.css";
 
 export const ServiceDiagram = () => {

@@ -1,6 +1,7 @@
-import "./Services.css";
 import { SERVICES, SECTION_IDS, SECTION_LABELS } from "../consts";
 import { SectionKicker } from "./SectionKicker";
+
+import "./Services.css";
 
 export const Services = () => {
   return (
@@ -12,7 +13,7 @@ export const Services = () => {
         <h2>
           От первого
           <br />
-          <em>вопроса</em> до роста.
+          <em>вопроса</em> до роста
         </h2>
         <p>
           Три режима работы.

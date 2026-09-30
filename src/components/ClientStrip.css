@@ -23,7 +23,7 @@
     border: 0;
     color: var(--teal);
     background: transparent;
-    font: 10px/1.4 'DM Mono', monospace;
+    font: bold 16px/1.4 'DM Mono', monospace;
     cursor: pointer;
 }
 
@@ -76,7 +76,9 @@
 }
 
 @keyframes client-marquee {
-    to { transform: translateX(-50%); }
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 @media (max-width: 800px) {

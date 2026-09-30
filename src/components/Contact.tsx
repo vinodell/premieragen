@@ -1,10 +1,16 @@
 import { getLocalDateTimeMin } from "../utils/dateTime";
-import { EmailIcon } from "./icons/EmailIcon";
-import { TelegramLogo } from "./icons/TelegramLogo";
-import "./Contact.css";
+import { EmailIcon, TelegramLogo } from "./icons";
 import type { FormEvent } from "react";
-import { CONTACT_EMAIL, TELEGRAM_URL, CONTACT_REQUEST_OPTIONS, SECTION_IDS, SECTION_LABELS } from "../consts";
+import {
+  CONTACT_EMAIL,
+  TELEGRAM_URL,
+  CONTACT_REQUEST_OPTIONS,
+  SECTION_IDS,
+  SECTION_LABELS,
+} from "../consts";
 import { SectionKicker } from "./SectionKicker";
+
+import "./Contact.css";
 
 export const Contact = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -29,7 +35,7 @@ export const Contact = () => {
         <h2>
           Расскажите,
           <br />
-          <em>что строите.</em>
+          <em>что строите</em>
         </h2>
       </div>
       <div className="contact-grid">
@@ -54,7 +60,9 @@ export const Contact = () => {
             aria-label="Написать в Telegram — откроется в новой вкладке"
           >
             <TelegramLogo aria-hidden="true" focusable="false" />
-            <span>Написать в Telegram <span aria-hidden="true">↗</span></span>
+            <span>
+              Написать в Telegram <span aria-hidden="true">↗</span>
+            </span>
           </a>
         </div>
         <form className="contact-form" onSubmit={handleSubmit}>
@@ -79,9 +87,13 @@ export const Contact = () => {
           <label>
             Что нужно улучшить?
             <select name="message" defaultValue="">
-              <option value="" disabled>Выберите задачу</option>
+              <option value="" disabled>
+                Выберите задачу
+              </option>
               {CONTACT_REQUEST_OPTIONS.map((option) => (
-                <option key={option} value={option}>{option}</option>
+                <option key={option} value={option}>
+                  {option}
+                </option>
               ))}
             </select>
           </label>
@@ -98,7 +110,11 @@ export const Contact = () => {
               onChange={(event) => event.currentTarget.setCustomValidity("")}
             />
           </label>
-          <input type="hidden" name="timeZone" value={Intl.DateTimeFormat().resolvedOptions().timeZone} />
+          <input
+            type="hidden"
+            name="timeZone"
+            value={Intl.DateTimeFormat().resolvedOptions().timeZone}
+          />
           <button className="button button-dark" type="submit">
             Отправить запрос <span>↗</span>
           </button>

@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { SECTION_IDS, SECTION_LABELS, TESTIMONIALS } from "../consts";
 import type { TestimonialCardProps } from "../types";
 import { SectionKicker } from "./SectionKicker";
+
 import "./Feedback.css";
 
 const FeedbackCard = ({ testimonial, index, total }: TestimonialCardProps) => {
@@ -28,10 +29,18 @@ const FeedbackCard = ({ testimonial, index, total }: TestimonialCardProps) => {
             <svg viewBox="0 0 240 280" fill="none" aria-hidden="true">
               <circle cx="120" cy="102" r="43" fill="currentColor" />
               <path d="M30 280v-40a90 90 0 0 1 180 0v40" fill="currentColor" />
-              <circle cx="120" cy="140" r="109" stroke="currentColor" strokeWidth="1" />
+              <circle
+                cx="120"
+                cy="140"
+                r="109"
+                stroke="currentColor"
+                strokeWidth="1"
+              />
             </svg>
           )}
-          <span className="testimonial-photo-label" aria-hidden="true">CLIENT / {String(index + 1).padStart(2, "0")}</span>
+          <span className="testimonial-photo-label" aria-hidden="true">
+            CLIENT / {String(index + 1).padStart(2, "0")}
+          </span>
         </div>
         <div className="testimonial-person-info">
           <h3>{testimonial.name}</h3>
@@ -41,9 +50,13 @@ const FeedbackCard = ({ testimonial, index, total }: TestimonialCardProps) => {
       </div>
       <div className="testimonial-story">
         <span className="testimonial-service">{testimonial.service}</span>
-        <span className="testimonial-quote-mark" aria-hidden="true">“</span>
+        <span className="testimonial-quote-mark" aria-hidden="true">
+          “
+        </span>
         <blockquote>{testimonial.quote}</blockquote>
-        <span className="testimonial-signature">Вместе. По делу. С результатом.</span>
+        <span className="testimonial-signature">
+          Вместе. По делу. С результатом.
+        </span>
       </div>
     </article>
   );
@@ -70,16 +83,44 @@ export const Feedback = () => {
         {SECTION_LABELS.testimonials.title}
       </SectionKicker>
       <div className="testimonials-heading">
-        <h2 id="testimonials-title">Лучше нас —<br /><em>наши клиенты.</em></h2>
-        <p>За каждым проектом — люди.<br />За каждым отзывом — совместная работа.</p>
+        <h2 id="testimonials-title">
+          Лучше нас —<br />
+          <em>наши клиенты</em>
+        </h2>
+        <p>
+          За каждым проектом — люди.
+          <br />
+          За каждым отзывом — совместная работа.
+        </p>
       </div>
       <div className="testimonials-toolbar">
         <div className="testimonials-controls">
-          <span className="testimonials-counter" aria-live="polite" aria-atomic="true">
-            {String(activeIndex + 1).padStart(2, "0")} / {String(TESTIMONIALS.length).padStart(2, "0")}
+          <span
+            className="testimonials-counter"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {String(activeIndex + 1).padStart(2, "0")} /{" "}
+            {String(TESTIMONIALS.length).padStart(2, "0")}
           </span>
-          <button type="button" aria-label="Предыдущий отзыв" aria-controls="testimonials-track" disabled={activeIndex === 0} onClick={() => goToSlide(activeIndex - 1)}>←</button>
-          <button type="button" aria-label="Следующий отзыв" aria-controls="testimonials-track" disabled={activeIndex === TESTIMONIALS.length - 1} onClick={() => goToSlide(activeIndex + 1)}>→</button>
+          <button
+            type="button"
+            aria-label="Предыдущий отзыв"
+            aria-controls="testimonials-track"
+            disabled={activeIndex === 0}
+            onClick={() => goToSlide(activeIndex - 1)}
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            aria-label="Следующий отзыв"
+            aria-controls="testimonials-track"
+            disabled={activeIndex === TESTIMONIALS.length - 1}
+            onClick={() => goToSlide(activeIndex + 1)}
+          >
+            →
+          </button>
         </div>
       </div>
       <div
@@ -92,18 +133,39 @@ export const Feedback = () => {
         onScroll={(event) => {
           const track = event.currentTarget;
           if (track.clientWidth) {
-            setActiveIndex(Math.max(0, Math.min(TESTIMONIALS.length - 1, Math.round(track.scrollLeft / track.clientWidth))));
+            setActiveIndex(
+              Math.max(
+                0,
+                Math.min(
+                  TESTIMONIALS.length - 1,
+                  Math.round(track.scrollLeft / track.clientWidth),
+                ),
+              ),
+            );
           }
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
             event.preventDefault();
-            goToSlide(Math.max(0, Math.min(TESTIMONIALS.length - 1, activeIndex + (event.key === "ArrowRight" ? 1 : -1))));
+            goToSlide(
+              Math.max(
+                0,
+                Math.min(
+                  TESTIMONIALS.length - 1,
+                  activeIndex + (event.key === "ArrowRight" ? 1 : -1),
+                ),
+              ),
+            );
           }
         }}
       >
         {TESTIMONIALS.map((testimonial, index) => (
-          <FeedbackCard key={testimonial.id} testimonial={testimonial} index={index} total={TESTIMONIALS.length} />
+          <FeedbackCard
+            key={testimonial.id}
+            testimonial={testimonial}
+            index={index}
+            total={TESTIMONIALS.length}
+          />
         ))}
       </div>
       <div className="testimonials-pagination" aria-label="Выбрать отзыв">
@@ -115,7 +177,9 @@ export const Feedback = () => {
             aria-current={activeIndex === index ? "true" : undefined}
             aria-controls="testimonials-track"
             onClick={() => goToSlide(index)}
-          ><span /></button>
+          >
+            <span />
+          </button>
         ))}
       </div>
     </section>

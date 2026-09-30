@@ -16,7 +16,7 @@
     font-size: clamp(2.8rem, 6.3vw, 7rem);
 }
 
-.testimonials-heading > p {
+.testimonials-heading>p {
     max-width: 270px;
     margin: 0;
     font: 12px/1.6 'DM Mono', monospace;
@@ -148,7 +148,7 @@
     line-height: 1.5;
 }
 
-.testimonial-person-info > span {
+.testimonial-person-info>span {
     color: var(--teal);
     font: 11px/1.5 'DM Mono', monospace;
 }
@@ -232,7 +232,7 @@
         margin: 45px 0 35px;
     }
 
-    .testimonials-heading > p {
+    .testimonials-heading>p {
         margin-top: 25px;
     }
 

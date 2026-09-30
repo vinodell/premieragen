@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CLIENTS } from "../consts";
+
 import "./ClientStrip.css";
 
 export const ClientStrip = () => {
@@ -12,9 +13,9 @@ export const ClientStrip = () => {
     >
       <div className="logo-strip-heading">
         <p>
-          Опыт людей
+          Наш послужной
           <br />
-          из команд
+          список
         </p>
         <button
           className="logo-strip-toggle"

@@ -1,4 +1,5 @@
 import { BRAND } from "../consts";
+
 import "./Brand.css";
 
 export const Brand = () => {

@@ -13,13 +13,12 @@ test("renders the growth agency landing page", () => {
   ).toBeInTheDocument();
 });
 
-
 test("internal links point to existing page sections", () => {
   render(<App />);
 
-  const internalLinks = screen.getAllByRole("link").filter((link) =>
-    link.getAttribute("href")?.startsWith("#"),
-  );
+  const internalLinks = screen
+    .getAllByRole("link")
+    .filter((link) => link.getAttribute("href")?.startsWith("#"));
 
   expect(internalLinks.length).toBeGreaterThan(0);
   internalLinks.forEach((link) => {

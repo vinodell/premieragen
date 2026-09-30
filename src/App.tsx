@@ -14,8 +14,6 @@ import {
 import "./styles.css";
 
 // TODO:
-// сетку наложить на фон блок-схемы в ServiceDiagrams
-// покрутить еще рыжий на Contacts
 // Катины фотокарточки покрутить
 
 function App() {

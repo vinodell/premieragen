@@ -1,6 +1,7 @@
 import { SectionKicker } from "./SectionKicker";
-import "./Experience.css";
 import { PROOF_STATS, SECTION_IDS, SECTION_LABELS } from "../consts";
+
+import "./Experience.css";
 
 export const Experience = () => {
   return (
