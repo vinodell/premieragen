@@ -74,7 +74,6 @@ export const Feedback = () => {
         <p>За каждым проектом — люди.<br />За каждым отзывом — совместная работа.</p>
       </div>
       <div className="testimonials-toolbar">
-        <span className="testimonials-demo">Демо-отзывы · примеры оформления</span>
         <div className="testimonials-controls">
           <span className="testimonials-counter" aria-live="polite" aria-atomic="true">
             {String(activeIndex + 1).padStart(2, "0")} / {String(TESTIMONIALS.length).padStart(2, "0")}

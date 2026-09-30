@@ -24,8 +24,42 @@
     object-position: center 30%;
 }
 
+.hero-image-title {
+    position: absolute;
+    top: 20.5%;
+    left: 4.6%;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(14px, 3.5vw, 54px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.hero-image-description {
+    position: absolute;
+    top: 35.5%;
+    left: 71.8%;
+    width: 24%;
+    color: #fff;
+    font-size: clamp(12px, 2.1vw, 28px);
+    font-weight: 400;
+    line-height: 1.32;
+}
+
+.hero-image-description p {
+    margin: 0;
+}
+
+.hero-image-description .hero-image-lead {
+    margin-bottom: 1.4em;
+    font-weight: 700;
+}
+
 .hero-copy {
     border: 1px solid var(--black);
+    width: 60%;
     max-width: 700px;
     padding: clamp(20px, 3vw, 40px);
     background: var(--pink);
@@ -88,7 +122,6 @@
     position: absolute;
     right: var(--pad);
     bottom: 10px;
-    right: 10px;
     padding: 16px;
     background: var(--teal);
     font: 10px/1.5 'DM Mono', monospace;
@@ -126,13 +159,31 @@
 
 @media (max-width: 800px) {
     .hero {
-        min-height: max(680px, calc(100svh - 70px));
-        padding-top: 300px;
+        display: block;
+        min-height: 0;
+        padding-top: 0;
         padding-bottom: 80px;
+    }
+
+    .hero .image-container {
+        position: relative;
+        z-index: 0;
+        margin-inline: calc(-1 * var(--pad));
+        aspect-ratio: 1087 / 1447;
     }
 
     .image-container img {
         object-position: center top;
+    }
+
+    .hero-copy {
+        width: 100%;
+        margin-top: 24px;
+    }
+
+    .hero-image-description {
+        left: 68%;
+        width: 28%;
     }
 
     .hero-bottom {

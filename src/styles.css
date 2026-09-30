@@ -1,13 +1,19 @@
 :root {
     --pink: #d1b0b3;
-    --teal: #29bdad;
+    --teal: #94ff94;
     --blue: #202d85;
-    --black: #000000;
+    --black: #de4500;
+    /* #d1b0b3
+    #d50c42
+    #de4500
+    #94ff94 */
     --ink: var(--blue);
     --muted: var(--blue);
     --line: rgba(32, 45, 133, .25);
     --pad: clamp(1.25rem, 4vw, 5.5rem);
 }
+
+
 
 body {
     overflow-x: hidden;

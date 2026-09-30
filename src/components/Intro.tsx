@@ -4,9 +4,20 @@ import "./Intro.css";
 export const Intro = () => {
   return (
     <section className="hero section-pad" aria-labelledby="hero-title">
-      <h1 className="visually-hidden" id="hero-title">{BRAND.name}</h1>
       <div className="image-container">
         <img src={HERO_IMAGE.src} alt={HERO_IMAGE.alt} />
+        <h1 className="hero-image-title" id="hero-title" aria-label={BRAND.name}>
+          {BRAND.firstLine}<br />{BRAND.secondLine}
+        </h1>
+        <div className="hero-image-description">
+          <p className="hero-image-lead">
+            Мы собрали сильнейших digital-экспертов в одну команду
+          </p>
+          <p>
+            Опыт Яндекса, Avito, СберМаркетинга, OMD и Publicis — теперь работает
+            на задачи вашего бизнеса.
+          </p>
+        </div>
       </div>
       <div className="hero-copy">
         <p className="eyebrow">

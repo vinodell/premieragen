@@ -27,7 +27,7 @@ export const SECTION_LABELS = {
 } as const;
 
 export const HERO_IMAGE = {
-  src: `${process.env.PUBLIC_URL || ""}/kate2.png`,
+  src: `${process.env.PUBLIC_URL || ""}/kate_clean.png`,
   alt: "Катя, специалист по маркетингу",
 } as const;
 
