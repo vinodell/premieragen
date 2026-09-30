@@ -1,0 +1,83 @@
+.service-diagram {
+    width: 100%;
+}
+
+.service-diagram-viewport {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--blue) transparent;
+}
+
+.service-diagram-viewport:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 4px;
+}
+
+.service-diagram-canvas {
+    display: block;
+    width: 100%;
+    min-width: 540px;
+    height: auto;
+}
+
+.service-diagram-node path {
+    fill: var(--blue);
+    transition: fill .3s ease;
+}
+
+.service-diagram-node text {
+    fill: var(--pink);
+    font: 600 12px 'Manrope', sans-serif;
+    transition: fill .3s ease;
+}
+
+.service-diagram-node.is-active path {
+    fill: var(--teal);
+}
+
+.service-diagram-node.is-active text {
+    fill: var(--black);
+}
+
+.service-diagram-links path {
+    fill: none;
+    stroke: var(--black);
+    stroke-width: 3;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset .5s ease;
+}
+
+.service-diagram-links.is-active path {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1.5s cubic-bezier(.16, 1, .3, 1);
+}
+
+.service-diagram-toggle {
+    display: block;
+    margin: 16px 0 0 auto;
+    padding: 8px 0;
+    border: 0;
+    background: transparent;
+    color: var(--blue);
+    cursor: pointer;
+    font: 10px/1.5 'DM Mono', monospace;
+    text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .service-diagram-links path {
+        stroke-dashoffset: 0;
+        transition: none;
+    }
+
+    .service-diagram-node path,
+    .service-diagram-node text {
+        transition: none;
+    }
+
+    .service-diagram-toggle {
+        display: none;
+    }
+}

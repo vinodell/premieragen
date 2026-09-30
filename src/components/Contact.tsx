@@ -1,11 +1,23 @@
+import { getLocalDateTimeMin } from "../utils/dateTime";
+import { EmailIcon } from "./icons/EmailIcon";
+import { TelegramLogo } from "./icons/TelegramLogo";
 import "./Contact.css";
 import type { FormEvent } from "react";
-import { CONTACT_EMAIL, CONTACT_MESSAGE_ROWS, SECTION_IDS, SECTION_LABELS } from "../consts";
+import { CONTACT_EMAIL, TELEGRAM_URL, CONTACT_REQUEST_OPTIONS, SECTION_IDS, SECTION_LABELS } from "../consts";
 import { SectionKicker } from "./SectionKicker";
 
 export const Contact = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const appointment = event.currentTarget.elements.namedItem("appointment");
+    if (appointment instanceof HTMLInputElement && appointment.value) {
+      const selectedTime = new Date(appointment.value).getTime();
+      if (!Number.isFinite(selectedTime) || selectedTime <= Date.now()) {
+        appointment.setCustomValidity("Выберите будущую дату и время.");
+        appointment.reportValidity();
+        return;
+      }
+    }
   };
 
   return (
@@ -29,8 +41,21 @@ export const Contact = () => {
           <p className="contact-meta">
             Обычно отвечаем в течение рабочего дня
             <br />
-            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+            <a className="contact-telegram" href={`mailto:${CONTACT_EMAIL}`}>
+              <EmailIcon aria-hidden="true" focusable="false" />
+              <span>{CONTACT_EMAIL}</span>
+            </a>
           </p>
+          <a
+            className="contact-telegram"
+            href={TELEGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Написать в Telegram — откроется в новой вкладке"
+          >
+            <TelegramLogo aria-hidden="true" focusable="false" />
+            <span>Написать в Telegram <span aria-hidden="true">↗</span></span>
+          </a>
         </div>
         <form className="contact-form" onSubmit={handleSubmit}>
           <label>
@@ -53,12 +78,31 @@ export const Contact = () => {
           </label>
           <label>
             Что нужно улучшить?
-            <textarea
-              name="message"
-              rows={CONTACT_MESSAGE_ROWS}
-              placeholder="Например, снизить стоимость заявки"
-            />
+            <select name="message" defaultValue="">
+              <option value="" disabled>Выберите задачу</option>
+              {CONTACT_REQUEST_OPTIONS.map((option) => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
           </label>
+          <label>
+            Удобная дата и время звонка
+            <input
+              type="datetime-local"
+              name="appointment"
+              min={getLocalDateTimeMin()}
+              aria-describedby="appointment-hint"
+              onFocus={(event) => {
+                event.currentTarget.min = getLocalDateTimeMin();
+              }}
+              onChange={(event) => event.currentTarget.setCustomValidity("")}
+            />
+            <span className="contact-field-hint" id="appointment-hint">
+              Необязательно. Время в вашем часовом поясе ({Intl.DateTimeFormat().resolvedOptions().timeZone}).
+              Подтвердим встречу после заявки.
+            </span>
+          </label>
+          <input type="hidden" name="timeZone" value={Intl.DateTimeFormat().resolvedOptions().timeZone} />
           <button className="button button-dark" type="submit">
             Отправить запрос <span>↗</span>
           </button>

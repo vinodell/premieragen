@@ -43,21 +43,20 @@
 }
 
 .contact-form input,
-.contact-form textarea {
+.contact-form select {
     width: 100%;
     padding: 13px 0;
     border: 0;
     border-bottom: 1px solid var(--line);
     border-radius: 0;
     outline: 0;
-    resize: vertical;
     color: var(--ink);
     background: transparent;
     font: 15px 'Manrope', sans-serif;
 }
 
 .contact-form input:focus,
-.contact-form textarea:focus {
+.contact-form select:focus {
     border-color: var(--ink);
 }
 
@@ -84,8 +83,81 @@
     }
 }
 
-.contact-form input::placeholder,
-.contact-form textarea::placeholder {
+.contact-form input::placeholder {
     color: var(--muted);
     opacity: 1;
+}
+
+.contact-telegram {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--blue);
+    font: 12px/1.5 'DM Mono', monospace;
+}
+
+.contact-telegram svg {
+    flex-shrink: 0;
+    transition: transform .2s ease;
+}
+
+.contact-telegram:hover svg {
+    transform: translateY(-3px);
+}
+
+.contact-telegram:hover > span {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.contact-meta .contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+    text-decoration: none;
+}
+
+.contact-email svg {
+    flex-shrink: 0;
+}
+
+.contact-email span {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.contact-form select {
+    min-width: 0;
+    max-width: 100%;
+    cursor: pointer;
+    text-transform: none;
+}
+
+.contact-form select option {
+    color: var(--blue);
+    background: var(--pink);
+}
+
+.contact-form select:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 4px;
+}
+
+.contact-form input[type="datetime-local"] {
+    min-width: 0;
+    max-width: 100%;
+    min-height: 48px;
+    color-scheme: light;
+}
+
+.contact-field-hint {
+    font: 12px/1.5 'Manrope', sans-serif;
+    text-transform: none;
+    color: var(--muted);
+}
+
+.contact-form input:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 4px;
 }

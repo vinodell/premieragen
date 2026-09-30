@@ -2,6 +2,7 @@
     --pink: #d1b0b3;
     --teal: #29bdad;
     --blue: #202d85;
+    --black: #000000;
     --ink: var(--blue);
     --muted: var(--blue);
     --line: rgba(32, 45, 133, .25);
@@ -45,11 +46,11 @@ a {
 
 .button-dark {
     color: var(--pink);
-    background: var(--ink);
+    background: var(--blue);
 }
 
 .button-dark:hover {
-    color: var(--blue);
+    color: var(--ink);
     background: var(--teal);
 }
 

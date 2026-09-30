@@ -8,6 +8,7 @@ import {
   Footer,
   Services,
   Contact,
+  Feedback,
 } from "./components";
 
 import "./styles.css";
@@ -21,9 +22,6 @@ import "./styles.css";
 // Intro component
 // 1) добавить блок схему интерактивную
 
-// Feedback component add
-// нужны отзывы
-
 // Team component?
 
 function App() {
@@ -36,6 +34,7 @@ function App() {
         <Description />
         <Services />
         <Experience />
+        <Feedback />
         <Contact />
       </main>
       <Footer />

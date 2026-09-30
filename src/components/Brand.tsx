@@ -13,4 +13,3 @@ export const Brand = () => {
     </span>
   );
 };
-

@@ -1,51 +1,124 @@
 .logo-strip {
+    --logo-gap: clamp(32px, 4vw, 72px);
+    --logo-duration: 36s;
     display: grid;
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 120px minmax(0, 1fr);
     gap: 30px;
     align-items: center;
     min-height: 126px;
     padding: 22px var(--pad);
     color: var(--pink);
-    background: var(--ink);
+    background: var(--blue);
 }
 
 .logo-strip p {
     margin: 0;
-    color: var(--pink);
     font: 10px/1.4 'DM Mono', monospace;
     text-transform: uppercase;
 }
 
+.logo-strip-toggle {
+    margin-top: 12px;
+    padding: 4px 0;
+    border: 0;
+    color: var(--teal);
+    background: transparent;
+    font: 10px/1.4 'DM Mono', monospace;
+    cursor: pointer;
+}
+
+.logo-viewport {
+    min-width: 0;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent);
+}
+
 .logo-track {
     display: flex;
-    justify-content: space-between;
+    width: max-content;
+    min-width: 200%;
+    animation: client-marquee var(--logo-duration) linear infinite;
+}
+
+.logo-group {
+    display: flex;
+    flex: 1 0 auto;
     align-items: center;
-    gap: 30px;
-    overflow: auto;
-    scrollbar-width: none;
+    justify-content: space-around;
+    gap: var(--logo-gap);
+    margin: 0;
+    padding: 0 var(--logo-gap) 0 0;
+    list-style: none;
+}
+
+.logo-item {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 12px;
     white-space: nowrap;
-}
-
-.logo-track::-webkit-scrollbar {
-    display: none;
-}
-
-.logo-track span {
     font-size: clamp(1rem, 1.5vw, 1.5rem);
     font-weight: 700;
     letter-spacing: -.06em;
 }
 
-@media (max-width: 800px) {
+.logo-icon {
+    display: block;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    color: var(--teal);
+}
 
+.logo-track.is-paused,
+.logo-viewport:hover .logo-track {
+    animation-play-state: paused;
+}
+
+@keyframes client-marquee {
+    to { transform: translateX(-50%); }
+}
+
+@media (max-width: 800px) {
     .logo-strip {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 16px;
         padding-top: 26px;
         padding-bottom: 26px;
     }
 
+    .logo-strip-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo-strip-toggle {
+        margin-top: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
     .logo-track {
+        width: 100%;
+        min-width: 0;
+        animation: none;
+    }
+
+    .logo-group {
+        flex: 1 1 100%;
+        flex-wrap: wrap;
         justify-content: flex-start;
+        gap: 24px;
+        padding: 0;
+    }
+
+    .logo-group-copy,
+    .logo-strip-toggle {
+        display: none;
+    }
+
+    .logo-viewport {
+        mask-image: none;
     }
 }

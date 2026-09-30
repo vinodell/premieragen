@@ -47,9 +47,9 @@
     background: var(--blue);
 }
 
-.service-card.pink {
-    border: 1px solid var(--line);
-    background: var(--pink);
+.service-card.black {
+    color: var(--pink);
+    background: var(--black);
 }
 
 .card-top {

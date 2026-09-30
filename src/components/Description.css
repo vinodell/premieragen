@@ -5,25 +5,23 @@
 
 .intro-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 9vw;
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+    align-items: center;
+    gap: clamp(24px, 4vw, 70px);
     margin-top: 90px;
 }
 
 .intro-copy {
-    max-width: 440px;
+    min-width: 0;
     padding-top: 14px;
 }
 
-.intro-copy>p:not(.lead) {
-    max-width: 360px;
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.65;
-    margin: 35px 0 45px;
+.intro-copy > .text-link {
+    margin-top: 28px;
+    white-space: normal;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1100px) {
 
     .intro {
         padding-top: 90px;
