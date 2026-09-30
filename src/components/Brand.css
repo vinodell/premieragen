@@ -1,0 +1,25 @@
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font: 500 11px/1.05 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.brand-mark-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-mark {
+    display: grid;
+    place-items: center;
+    width: 29px;
+    height: 29px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font: 700 17px/1 'Manrope', sans-serif;
+}
+

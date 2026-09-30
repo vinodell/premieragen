@@ -1,0 +1,51 @@
+.logo-strip {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 30px;
+    align-items: center;
+    min-height: 126px;
+    padding: 22px var(--pad);
+    color: var(--pink);
+    background: var(--ink);
+}
+
+.logo-strip p {
+    margin: 0;
+    color: var(--pink);
+    font: 10px/1.4 'DM Mono', monospace;
+    text-transform: uppercase;
+}
+
+.logo-track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    overflow: auto;
+    scrollbar-width: none;
+    white-space: nowrap;
+}
+
+.logo-track::-webkit-scrollbar {
+    display: none;
+}
+
+.logo-track span {
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: -.06em;
+}
+
+@media (max-width: 800px) {
+
+    .logo-strip {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding-top: 26px;
+        padding-bottom: 26px;
+    }
+
+    .logo-track {
+        justify-content: flex-start;
+    }
+}

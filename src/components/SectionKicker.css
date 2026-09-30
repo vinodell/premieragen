@@ -1,0 +1,18 @@
+.section-kicker {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font: 10px 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--muted);
+}
+
+.section-kicker span:first-child {
+    color: var(--ink);
+}
+
+.section-kicker.light,
+.section-kicker.light span:first-child {
+    color: var(--pink);
+}

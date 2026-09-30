@@ -1,0 +1,146 @@
+.hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-end;
+    min-height: min(825px, calc(100svh - 82px));
+    padding-top: 180px;
+    padding-bottom: 90px;
+    background: var(--pink);
+}
+
+.image-container {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.image-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+}
+
+.hero-copy {
+    max-width: 700px;
+    padding: clamp(20px, 3vw, 40px);
+    background: var(--pink);
+}
+
+.eyebrow {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin: 0 0 30px;
+    font: 10px/1.5 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+.eyebrow-dot {
+    flex: 0 0 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--blue);
+}
+
+.hero-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-end;
+}
+
+.hero-intro {
+    max-width: 300px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.hero-bottom .text-link {
+    white-space: normal;
+}
+
+.hero-sticker {
+    position: absolute;
+    right: var(--pad);
+    top: 9%;
+    display: grid;
+    place-items: center;
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    background: var(--teal);
+    font: 700 12px/1.05 'DM Mono', monospace;
+    transform: rotate(12deg);
+}
+
+.hero-sticker span {
+    font-size: 22px;
+}
+
+.hero-note {
+    position: absolute;
+    right: var(--pad);
+    bottom: 90px;
+    padding: 16px;
+    background: var(--teal);
+    font: 10px/1.5 'DM Mono', monospace;
+    text-transform: uppercase;
+}
+
+.hero-note strong {
+    display: block;
+    margin-top: 6px;
+    font: 23px/1 Georgia, serif;
+    text-transform: lowercase;
+}
+
+.scroll-cue {
+    position: absolute;
+    bottom: 20px;
+    left: var(--pad);
+    padding: 8px 12px;
+    background: var(--pink);
+    font: 10px 'DM Mono', monospace;
+    text-transform: uppercase;
+}
+
+.scroll-cue span {
+    display: inline-block;
+    margin-right: 12px;
+    font-size: 17px;
+}
+
+@media (max-width: 1100px) {
+    .hero-note {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .hero {
+        min-height: max(680px, calc(100svh - 70px));
+        padding-top: 300px;
+        padding-bottom: 80px;
+    }
+
+    .image-container img {
+        object-position: center top;
+    }
+
+    .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-sticker {
+        top: 25px;
+        width: 84px;
+        height: 84px;
+    }
+}

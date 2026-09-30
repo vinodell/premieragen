@@ -1,0 +1,53 @@
+.site-footer a {
+    transition: opacity .2s ease;
+}
+
+.site-footer a:hover {
+    opacity: .55;
+}
+
+.site-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 20px;
+    align-items: end;
+    padding: 34px var(--pad);
+    color: var(--pink);
+    background: var(--ink);
+}
+
+.site-footer p {
+    margin: 0;
+    color: var(--pink);
+    font: 11px/1.5 'DM Mono', monospace;
+    text-transform: uppercase;
+}
+
+.site-footer>div {
+    display: flex;
+    gap: 24px;
+    font: 11px 'DM Mono', monospace;
+    text-transform: uppercase;
+}
+
+.footer-year {
+    color: var(--pink);
+    font: 10px 'DM Mono', monospace;
+}
+
+@media (max-width: 800px) {
+
+    .site-footer {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 20px;
+    }
+
+    .site-footer>div {
+        grid-column: 1 / -1;
+    }
+
+    .footer-year {
+        justify-self: end;
+        align-self: center;
+    }
+}

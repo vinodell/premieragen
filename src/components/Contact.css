@@ -1,0 +1,91 @@
+.contact-section {
+    padding-top: 145px;
+    padding-bottom: 155px;
+}
+
+.contact-head h2 {
+    margin-top: 80px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9vw;
+    margin-top: 100px;
+}
+
+.contact-grid>div {
+    max-width: 425px;
+}
+
+.contact-meta {
+    margin-top: 70px;
+    color: var(--muted);
+    font: 11px/1.7 'DM Mono', monospace;
+}
+
+.contact-meta a {
+    color: var(--ink);
+    text-decoration: underline;
+}
+
+.contact-form {
+    display: grid;
+    gap: 28px;
+    max-width: 520px;
+}
+
+.contact-form label {
+    display: grid;
+    gap: 10px;
+    font: 10px 'DM Mono', monospace;
+    text-transform: uppercase;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 13px 0;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    outline: 0;
+    resize: vertical;
+    color: var(--ink);
+    background: transparent;
+    font: 15px 'Manrope', sans-serif;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--ink);
+}
+
+.contact-form button {
+    justify-self: start;
+    margin-top: 12px;
+}
+
+@media (max-width: 800px) {
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+        margin-top: 58px;
+    }
+
+    .contact-section {
+        padding-top: 90px;
+        padding-bottom: 100px;
+    }
+
+    .contact-head h2 {
+        margin-top: 65px;
+    }
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--muted);
+    opacity: 1;
+}
