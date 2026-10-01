@@ -1,4 +1,4 @@
-import type { CompanyIconProps } from "../../types";
+import type { CompanyIconProps } from "../types";
 
 export const CompanyIcon = (props: CompanyIconProps) => (
   <svg

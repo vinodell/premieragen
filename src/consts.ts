@@ -1,6 +1,13 @@
-import type { ServiceDiagramNode, ServiceDiagramConnection } from "./types";
-import { CompanyIcon } from "./components/icons/CompanyIcon";
-import type { Client, NavItem, ProofStat, Service, Testimonial } from "./types";
+import { CompanyIcon } from "./icons";
+import type {
+  ServiceDiagramNode,
+  ServiceDiagramConnection,
+  Client,
+  NavItem,
+  ProofStat,
+  Service,
+  Testimonial,
+} from "./types";
 
 export const BRAND = {
   name: "Premier Agency",
@@ -49,20 +56,19 @@ export const NAV_ITEMS: readonly NavItem[] = [
 ];
 
 // TODO:
-// Яндекс, Сбер, СберМаркетинг, PepsiCo, Lamoda, 
-// SOKOLOV, Золотое Яблоко, Alrosa Diamonds, 585 GOLD, 
-// BORK, 12 STOREEZ, ЦУМ, Т‑Банк, Совкомбанк, Альфа‑Банк, 
-// Иль де Боте, Лэтуаль, Рив Гош, X5 Retail Group, Максидом, 
-// Все Инструменты, Hoff, Simple Wine, Биннофарм Групп, Эвалар, 
+// Яндекс, Сбер, СберМаркетинг, PepsiCo, Lamoda,
+// SOKOLOV, Золотое Яблоко, Alrosa Diamonds, 585 GOLD,
+// BORK, 12 STOREEZ, ЦУМ, Т‑Банк, Совкомбанк, Альфа‑Банк,
+// Иль де Боте, Лэтуаль, Рив Гош, X5 Retail Group, Максидом,
+// Все Инструменты, Hoff, Simple Wine, Биннофарм Групп, Эвалар,
 // 36,6, ФармСтандарт, ЗдравСити, Самолет
-// ПИК, ДонСтрой, LEGENDA, Инвитро, Аскона, М.Видео, 
-// Вин Лаб, Акрихин, Лемана ПРО, Бургер Кинг, Светофор, 
-// Комус, LibreDerm, Улыбка Радуги, Бронхипрет, БКС, Самокат, 
-// Profi.ru, SKILLBOX, Петровакс, Bausch, World Class, Апельсин, 
-// Ivi, Okko, Rendez-Vous, Спортмастер, La Redoute, Love Republic, 
+// ПИК, ДонСтрой, LEGENDA, Инвитро, Аскона, М.Видео,
+// Вин Лаб, Акрихин, Лемана ПРО, Бургер Кинг, Светофор,
+// Комус, LibreDerm, Улыбка Радуги, Бронхипрет, БКС, Самокат,
+// Profi.ru, SKILLBOX, Петровакс, Bausch, World Class, Апельсин,
+// Ivi, Okko, Rendez-Vous, Спортмастер, La Redoute, Love Republic,
 // Сантехника Онлайн и другие.
 
-// Replace Icon with a React SVG component, e.g. an imported ReactComponent from an SVG file.
 export const CLIENTS: readonly Client[] = [
   { name: "Яндекс", Icon: CompanyIcon },
   { name: "Avito", Icon: CompanyIcon },
@@ -105,7 +111,6 @@ export const PROOF_STATS: readonly ProofStat[] = [
 export const CONTACT_EMAIL = "katieza@me.com";
 export const TELEGRAM_URL = "https://t.me/katieza";
 
-// Demo content. Set photo to a PNG URL or an imported image when real reviews are ready.
 export const TESTIMONIALS: readonly Testimonial[] = [
   {
     id: "audit-demo",
@@ -113,7 +118,8 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     role: "Та, что хуячила тебя тапком",
     company: "Компания / Retail",
     service: "Положительная динамика отрицательного роста",
-    quote: "Нам было важно понять, где теряются заявки. В итоге в очередной раз слили бабки",
+    quote:
+      "Нам было важно понять, где теряются заявки. В итоге в очередной раз слили бабки",
   },
   {
     id: "performance-demo",
@@ -121,7 +127,8 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     role: "Ушел из дома",
     company: "Компания / E-commerce",
     service: "хуярить пивко на диване",
-    quote: "Появилось ощущение... хочется посрать в унитаз, а не в штаны. В целом, доволен.",
+    quote:
+      "Появилось ощущение... хочется посрать в унитаз, а не в штаны. В целом, доволен.",
   },
 ];
 
@@ -129,7 +136,6 @@ export const SERVICE_DIAGRAM_GROUP_COUNT = 5;
 export const SERVICE_DIAGRAM_STEP_MS = 3000;
 export const SERVICE_DIAGRAM_CYCLE_PAUSE_MS = 1000;
 
-// Layout and connection sequence reference: https://www.ketchup-marketing.co.uk/
 export const SERVICE_DIAGRAM_NODES: readonly ServiceDiagramNode[] = [
   { id: "marketing", lines: ["Маркетинг", "стратегия"], column: 2, row: 0, groups: [5] },
   { id: "web-design", lines: ["Веб-", "дизайн"], column: 0, row: 1, groups: [1] },
@@ -149,10 +155,28 @@ export const SERVICE_DIAGRAM_NODES: readonly ServiceDiagramNode[] = [
   { id: "print", lines: ["Печатный", "дизайн"], column: 5, row: 5, groups: [] },
 ];
 
-export const SERVICE_DIAGRAM_CONNECTIONS: readonly ServiceDiagramConnection[] = [
-  { group: 1, paths: ["M 102 168 H 357"] },
-  { group: 2, paths: ["M 170 336 V 402 H 102", "M 170 336 V 402 H 289 V 468"] },
-  { group: 3, paths: ["M 527 219 V 468", "M 595 285 H 534 V 468"] },
-  { group: 4, paths: ["M 51 453 V 519 H 238"] },
-  { group: 5, paths: ["M 289 102 V 402 H 357"] },
-];
+export const SERVICE_DIAGRAM_CONNECTIONS: readonly ServiceDiagramConnection[] =
+  [
+    { group: 1, paths: ["M 102 168 H 357"] },
+    {
+      group: 2,
+      paths: ["M 170 336 V 402 H 102", "M 170 336 V 402 H 289 V 468"],
+    },
+    { group: 3, paths: ["M 527 219 V 468", "M 595 285 H 534 V 468"] },
+    { group: 4, paths: ["M 51 453 V 519 H 238"] },
+    { group: 5, paths: ["M 289 102 V 402 H 357"] },
+  ];
+
+export const telegramApi = "https://worker.max-khamitov.workers.dev/send-date";
+
+export interface TelegramResponse {
+  readonly success: boolean;
+  readonly error?: string;
+}
+
+export interface NewClientPayload {
+  readonly name: string;
+  readonly email: string;
+  readonly date: string;
+  readonly feature: string;
+}

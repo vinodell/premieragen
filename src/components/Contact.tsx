@@ -1,5 +1,5 @@
 import { getLocalDateTimeMin } from "../utils/dateTime";
-import { EmailIcon, TelegramLogo } from "./icons";
+import { EmailIcon, TelegramLogo } from "../icons";
 import type { FormEvent } from "react";
 import {
   CONTACT_EMAIL,
