@@ -1,6 +1,6 @@
 .logo-strip {
     --logo-gap: clamp(32px, 4vw, 72px);
-    --logo-duration: 36s;
+    --logo-duration: 120s;
     display: grid;
     grid-template-columns: 120px minmax(0, 1fr);
     gap: 30px;
