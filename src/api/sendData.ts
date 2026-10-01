@@ -1,15 +1,27 @@
-import { telegramApi, NewClientPayload, TelegramResponse } from "../consts";
+import { telegramApi, NewClientPayload } from "../consts";
 
 export const sendData = async (payload: NewClientPayload): Promise<void> => {
-  const response = await fetch(`${telegramApi}/send-date`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
 
-  const result = (await response.json()) as TelegramResponse;
-
-  if (!response.ok || !result.success) {
-    throw new Error(result.error || "Telegram send failed");
+  try {
+    const response = await fetch(`${telegramApi}/send-data`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+    if (!response.ok) throw new Error("Не удалось отправить заявку.");
+    const result: unknown = await response.json();
+    if (
+      typeof result !== "object" ||
+      result === null ||
+      !("success" in result) ||
+      result.success !== true
+    ) {
+      throw new Error("Некорректный ответ сервера.");
+    }
+  } finally {
+    clearTimeout(timeout);
   }
-}
+};

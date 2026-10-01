@@ -1,11 +1,12 @@
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "premier",
-	"compatibility_date": "2026-09-30",
-	"observability": {
-		"enabled": true,
-	},
-	"assets": {
-		"directory": "build",
-	},
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "premier",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-18",
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": "../build",
+    "binding": "ASSETS",
+    "run_worker_first": ["/send-data", "/send-date"]
+  }
 }

@@ -1,6 +1,6 @@
 import { getLocalDateTimeMin } from "../utils/dateTime";
 import { EmailIcon, TelegramLogo } from "../icons";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { sendData } from "../api";
 import {
   CONTACT_EMAIL,
@@ -14,54 +14,54 @@ import { SectionKicker } from "./SectionKicker";
 import "./Contact.css";
 
 export const Contact = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [date, setData] = useState("");
-  const [feature, setFeatures] = useState("");
-  // const [isSending, setIsSending] = useState(false);
-  // const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+  const sending = useRef(false);
 
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const appointment = event.currentTarget.elements.namedItem("appointment");
-    if (appointment instanceof HTMLInputElement && appointment.value) {
-      const selectedTime = new Date(appointment.value).getTime();
-      if (!Number.isFinite(selectedTime) || selectedTime <= Date.now()) {
-        appointment.setCustomValidity("Выберите будущую дату и время.");
-        appointment.reportValidity();
-        return;
-      }
+    if (sending.current) return;
+
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const feature = String(data.get("feature") ?? "");
+    const date = String(data.get("appointment") ?? "");
+    const appointment = form.elements.namedItem("appointment");
+    const nameInput = form.elements.namedItem("name");
+
+    if (nameInput instanceof HTMLInputElement) {
+      nameInput.setCustomValidity(name ? "" : "Введите имя.");
     }
-  };
-
-  // console.log("isSending", isSending)
-  console.log("date", date)
-  console.log("name", name)
-  console.log("feature", feature)
-  console.log("email", email)
-
-    const sendRequest = async () => {
-    if (!date || !feature || !name || !email) {
-      console.log("Пожалуйста, заполните все обязательные поля.");
-      return;
+    if (appointment instanceof HTMLInputElement) {
+      const selectedTime = new Date(date).getTime();
+      appointment.setCustomValidity(
+        Number.isFinite(selectedTime) && selectedTime > Date.now()
+          ? ""
+          : "Выберите будущую дату и время.",
+      );
     }
+    if (!form.reportValidity()) return;
 
-    // setErrorMessage(null);
-
+    sending.current = true;
+    setStatus("sending");
     try {
       await sendData({
         name,
         email,
         feature,
-        date,
+        date: new Date(date).toISOString(),
       });
-    } catch (error) {
-      console.error("Ошибка отправки:", error);
-      // setErrorMessage("Не удалось отправить заявку. Попробуйте еще раз.");
+      form.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    } finally {
+      sending.current = false;
     }
   };
-
 
   return (
     <section className="contact-section section-pad" id={SECTION_IDS.contact}>
@@ -102,13 +102,19 @@ export const Contact = () => {
             </span>
           </a>
         </div>
-        <form className="contact-form" onSubmit={handleSubmit}>
+        <form
+          className="contact-form"
+          onSubmit={handleSubmit}
+          aria-busy={status === "sending"}
+        >
           <label>
             Ваше имя
             <input
               type="text"
-              name={name}
-              onChange={(e) => setName(e.target.value)}
+              name="name"
+              autoComplete="name"
+              maxLength={100}
+              onChange={(event) => event.currentTarget.setCustomValidity("")}
               placeholder="Как к Вам можно обращаться?"
               required
             />
@@ -117,16 +123,17 @@ export const Contact = () => {
             Рабочий email
             <input
               type="email"
-              name={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              autoComplete="email"
+              maxLength={254}
               placeholder="name@company.ru"
               required
             />
           </label>
           <label>
             Что нужно улучшить?
-            <select name="message" defaultValue="" onChange={(e) => setFeatures(e.target.value)}>
-              <option value={feature} disabled>
+            <select name="feature" defaultValue="" required>
+              <option value="" disabled>
                 Выберите задачу
               </option>
               {CONTACT_REQUEST_OPTIONS.map((option) => (
@@ -141,25 +148,35 @@ export const Contact = () => {
             <input
               type="datetime-local"
               name="appointment"
+              required
               min={getLocalDateTimeMin()}
               aria-describedby="appointment-hint"
               onFocus={(event) => {
                 event.currentTarget.min = getLocalDateTimeMin();
               }}
               onChange={(event) => {
-                event.currentTarget.setCustomValidity("")
-                setData(event.currentTarget.value)
+                event.currentTarget.setCustomValidity("");
               }}
             />
           </label>
-          <input
-            type="hidden"
-            name="timeZone"
-            value={Intl.DateTimeFormat().resolvedOptions().timeZone}
-          />
-          <button className="button button-dark" type="button" onClick={sendRequest}>
-            Отправить запрос <span>↗</span>
+          <p className="contact-form-message" id="appointment-hint">
+            Время указано в вашем часовом поясе:{" "}
+            {Intl.DateTimeFormat().resolvedOptions().timeZone}.
+          </p>
+          <button
+            className="button button-dark"
+            type="submit"
+            disabled={status === "sending"}
+          >
+            {status === "sending" ? "Отправляем…" : "Отправить запрос"}{" "}
+            <span aria-hidden="true">↗</span>
           </button>
+          <p className="contact-form-message" role="status">
+            {status === "success" &&
+              "Заявка отправлена! Скоро свяжемся с вами."}
+            {status === "error" &&
+              "Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в Telegram."}
+          </p>
         </form>
       </div>
     </section>

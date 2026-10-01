@@ -6,8 +6,8 @@
     "dev": "wrangler dev",
     "start": "wrangler dev",
     "test": "vitest",
-    "deploy": "npm run build && wrangler deploy",
-    "preview": "npm run build && wrangler dev"
+    "deploy": "npm --prefix .. run build && wrangler deploy",
+    "preview": "npm --prefix .. run build && wrangler dev"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.21.0",
