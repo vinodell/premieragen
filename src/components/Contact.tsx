@@ -1,6 +1,7 @@
 import { getLocalDateTimeMin } from "../utils/dateTime";
 import { EmailIcon, TelegramLogo } from "../icons";
-import type { FormEvent } from "react";
+import { useState, type FormEvent } from "react";
+import { sendData } from "../api";
 import {
   CONTACT_EMAIL,
   TELEGRAM_URL,
@@ -13,6 +14,14 @@ import { SectionKicker } from "./SectionKicker";
 import "./Contact.css";
 
 export const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [date, setData] = useState("");
+  const [feature, setFeatures] = useState("");
+  // const [isSending, setIsSending] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const appointment = event.currentTarget.elements.namedItem("appointment");
@@ -25,6 +34,34 @@ export const Contact = () => {
       }
     }
   };
+
+  // console.log("isSending", isSending)
+  console.log("date", date)
+  console.log("name", name)
+  console.log("feature", feature)
+  console.log("email", email)
+
+    const sendRequest = async () => {
+    if (!date || !feature || !name || !email) {
+      console.log("Пожалуйста, заполните все обязательные поля.");
+      return;
+    }
+
+    setErrorMessage(null);
+
+    try {
+      await sendData({
+        name,
+        email,
+        feature,
+        date,
+      });
+    } catch (error) {
+      console.error("Ошибка отправки:", error);
+      setErrorMessage("Не удалось отправить заявку. Попробуйте еще раз.");
+    }
+  };
+
 
   return (
     <section className="contact-section section-pad" id={SECTION_IDS.contact}>
@@ -70,7 +107,8 @@ export const Contact = () => {
             Ваше имя
             <input
               type="text"
-              name="name"
+              name={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Как к Вам можно обращаться?"
               required
             />
@@ -79,15 +117,16 @@ export const Contact = () => {
             Рабочий email
             <input
               type="email"
-              name="email"
+              name={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="name@company.ru"
               required
             />
           </label>
           <label>
             Что нужно улучшить?
-            <select name="message" defaultValue="">
-              <option value="" disabled>
+            <select name="message" defaultValue="" onChange={(e) => setFeatures(e.target.value)}>
+              <option value={feature} disabled>
                 Выберите задачу
               </option>
               {CONTACT_REQUEST_OPTIONS.map((option) => (
@@ -107,7 +146,10 @@ export const Contact = () => {
               onFocus={(event) => {
                 event.currentTarget.min = getLocalDateTimeMin();
               }}
-              onChange={(event) => event.currentTarget.setCustomValidity("")}
+              onChange={(event) => {
+                event.currentTarget.setCustomValidity("")
+                setData(event.currentTarget.value)
+              }}
             />
           </label>
           <input
@@ -115,7 +157,7 @@ export const Contact = () => {
             name="timeZone"
             value={Intl.DateTimeFormat().resolvedOptions().timeZone}
           />
-          <button className="button button-dark" type="submit">
+          <button className="button button-dark" type="button" onClick={sendRequest}>
             Отправить запрос <span>↗</span>
           </button>
         </form>

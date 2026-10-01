@@ -45,7 +45,6 @@
     background: var(--black);
 }
 
-/* full-bleed background вправо */
 .contact-form::after {
     content: "";
     position: absolute;

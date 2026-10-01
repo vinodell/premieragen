@@ -29,7 +29,7 @@ const isAllowedOrigin = (origin) => {
 	return /^http:\/\/localhost:\d+$/.test(origin);
 }
 
-export default {
+export const worker = {
 	async fetch(request, env) {
 		const corsHeaders = getCorsHeaders(request);
 		const url = new URL(request.url);

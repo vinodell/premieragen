@@ -167,7 +167,7 @@ export const SERVICE_DIAGRAM_CONNECTIONS: readonly ServiceDiagramConnection[] =
     { group: 5, paths: ["M 289 102 V 402 H 357"] },
   ];
 
-export const telegramApi = "https://worker.max-khamitov.workers.dev/send-date";
+export const telegramApi = "https://premier.max-khamitov.workers.dev";
 
 export interface TelegramResponse {
   readonly success: boolean;
