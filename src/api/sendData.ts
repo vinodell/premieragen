@@ -5,7 +5,7 @@ export const sendData = async (payload: NewClientPayload): Promise<void> => {
   const timeout = setTimeout(() => controller.abort(), 15000);
 
   try {
-    const response = await fetch(`${telegramApi}/send-data`, {
+    const response = await fetch(new URL("/send-data", telegramApi).href, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
