@@ -159,10 +159,6 @@ export const Contact = () => {
               }}
             />
           </label>
-          <p className="contact-form-message" id="appointment-hint">
-            Время указано в вашем часовом поясе:{" "}
-            {Intl.DateTimeFormat().resolvedOptions().timeZone}.
-          </p>
           <button
             className="button button-dark"
             type="submit"

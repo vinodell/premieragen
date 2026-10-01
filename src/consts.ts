@@ -55,20 +55,6 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { label: "Опыт", href: `#${SECTION_IDS.cases}` },
 ];
 
-// TODO:
-// Яндекс, Сбер, СберМаркетинг, PepsiCo, Lamoda,
-// SOKOLOV, Золотое Яблоко, Alrosa Diamonds, 585 GOLD,
-// BORK, 12 STOREEZ, ЦУМ, Т‑Банк, Совкомбанк, Альфа‑Банк,
-// Иль де Боте, Лэтуаль, Рив Гош, X5 Retail Group, Максидом,
-// Все Инструменты, Hoff, Simple Wine, Биннофарм Групп, Эвалар,
-// 36,6, ФармСтандарт, ЗдравСити, Самолет
-// ПИК, ДонСтрой, LEGENDA, Инвитро, Аскона, М.Видео,
-// Вин Лаб, Акрихин, Лемана ПРО, Бургер Кинг, Светофор,
-// Комус, LibreDerm, Улыбка Радуги, Бронхипрет, БКС, Самокат,
-// Profi.ru, SKILLBOX, Петровакс, Bausch, World Class, Апельсин,
-// Ivi, Okko, Rendez-Vous, Спортмастер, La Redoute, Love Republic,
-// Сантехника Онлайн и другие.
-
 export const CLIENTS: readonly Client[] = [
   { name: "Яндекс", Icon: CompanyIcon },
   { name: "Avito", Icon: CompanyIcon },
@@ -78,6 +64,59 @@ export const CLIENTS: readonly Client[] = [
   { name: "PepsiCo", Icon: CompanyIcon },
   { name: "Lamoda", Icon: CompanyIcon },
   { name: "SOKOLOV", Icon: CompanyIcon },
+  { name: "Золотое Яблоко", Icon: CompanyIcon },
+  { name: "Alrosa Diamonds", Icon: CompanyIcon },
+  { name: "585 GOLD", Icon: CompanyIcon },
+  { name: "12 STOREEZ", Icon: CompanyIcon },
+  { name: "ЦУМ", Icon: CompanyIcon },
+  { name: "Т‑Банк", Icon: CompanyIcon },
+  { name: "Совкомбанк", Icon: CompanyIcon },
+  { name: "Альфа‑Банк", Icon: CompanyIcon },
+  { name: "Иль де Боте", Icon: CompanyIcon },
+  { name: "BORK", Icon: CompanyIcon },
+  { name: "Иль де Боте", Icon: CompanyIcon },
+  { name: "Лэтуаль", Icon: CompanyIcon },
+  { name: "Рив Гош", Icon: CompanyIcon },
+  { name: "X5 Retail Group", Icon: CompanyIcon },
+  { name: "Максидом", Icon: CompanyIcon },
+  { name: "Hoff", Icon: CompanyIcon },
+  { name: "Simple Wine", Icon: CompanyIcon },
+  { name: "Эвалар", Icon: CompanyIcon },
+  { name: "Биннофарм Групп", Icon: CompanyIcon },
+  { name: "36,6", Icon: CompanyIcon },
+  { name: "ФармСтандарт", Icon: CompanyIcon },
+  { name: "ЗдравСити", Icon: CompanyIcon },
+  { name: "Самолет", Icon: CompanyIcon },
+  { name: "ПИК", Icon: CompanyIcon },
+  { name: "ДонСтрой", Icon: CompanyIcon },
+  { name: "LEGENDA", Icon: CompanyIcon },
+  { name: "Инвитро", Icon: CompanyIcon },
+  { name: "Аскона", Icon: CompanyIcon },
+  { name: "М.Видео", Icon: CompanyIcon },
+  { name: "Вин Лаб", Icon: CompanyIcon },
+  { name: "Акрихин", Icon: CompanyIcon },
+  { name: "Лемана ПРО", Icon: CompanyIcon },
+  { name: "Бургер Кинг", Icon: CompanyIcon },
+  { name: "Светофор", Icon: CompanyIcon },
+  { name: "Комус", Icon: CompanyIcon },
+  { name: "LibreDerm", Icon: CompanyIcon },
+  { name: "Улыбка Радуги", Icon: CompanyIcon },
+  { name: "Бронхипрет", Icon: CompanyIcon },
+  { name: "БКС", Icon: CompanyIcon },
+  { name: "Самокат", Icon: CompanyIcon },
+  { name: "Profi.ru", Icon: CompanyIcon },
+  { name: "SKILLBOX", Icon: CompanyIcon },
+  { name: "Петровакс", Icon: CompanyIcon },
+  { name: "Bausch", Icon: CompanyIcon },
+  { name: "World Class", Icon: CompanyIcon },
+  { name: "Апельсин", Icon: CompanyIcon },
+  { name: "Ivi", Icon: CompanyIcon },
+  { name: "Okko", Icon: CompanyIcon },
+  { name: "Rendez-Vous", Icon: CompanyIcon },
+  { name: "Спортмастер", Icon: CompanyIcon },
+  { name: "La Redoute", Icon: CompanyIcon },
+  { name: "Love Republic", Icon: CompanyIcon },
+  { name: "Сантехника онлайн", Icon: CompanyIcon },
 ];
 
 export const SERVICES: readonly Service[] = [
@@ -128,7 +167,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     company: "Компания / Retail",
     service: "Папина гордость до 18 лет",
     quote:
-      "Мне объяснили воронку продаж. Я спросила, а креман туда наливать можно?",
+      "Я провела конкурентный анализ. У конкурентки сумка дороже. Работаем.",
   },
   {
     id: "performance-demo",
@@ -138,6 +177,15 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     service: "хуярить пивко на диване",
     quote:
       "Появилось ощущение... хочется посрать в унитаз, а не в штаны. В целом, доволен.",
+  },
+  {
+    id: "performance-demo",
+    name: "Брат",
+    role: "Ушел из дома",
+    company: "Компания / E-commerce",
+    service: "Перенос задач на понедельник с 2007 года",
+    quote:
+      "Раньше я просто не понимал, что происходит. После консультации понял, что не понимаю системно.",
   },
 ];
 
