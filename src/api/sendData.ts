@@ -1,7 +1,7 @@
 import { telegramApi, NewClientPayload, TelegramResponse } from "../consts";
 
 export const sendData = async (payload: NewClientPayload): Promise<void> => {
-  const response = await fetch(telegramApi, {
+  const response = await fetch(`${telegramApi}/send-date`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
