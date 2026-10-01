@@ -19,7 +19,7 @@ export const Contact = () => {
   const [date, setData] = useState("");
   const [feature, setFeatures] = useState("");
   // const [isSending, setIsSending] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  // const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -47,7 +47,7 @@ export const Contact = () => {
       return;
     }
 
-    setErrorMessage(null);
+    // setErrorMessage(null);
 
     try {
       await sendData({
@@ -58,7 +58,7 @@ export const Contact = () => {
       });
     } catch (error) {
       console.error("Ошибка отправки:", error);
-      setErrorMessage("Не удалось отправить заявку. Попробуйте еще раз.");
+      // setErrorMessage("Не удалось отправить заявку. Попробуйте еще раз.");
     }
   };
 
