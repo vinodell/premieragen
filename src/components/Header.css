@@ -5,6 +5,7 @@
     justify-content: space-between;
     padding: 0 var(--pad);
     border-bottom: 1px solid var(--line);
+    background: black;
 }
 
 .main-nav {

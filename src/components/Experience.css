@@ -12,7 +12,8 @@
     position: relative;
     overflow: hidden;
     min-height: 440px;
-    background: var(--black);
+    /* background: var(--black); */
+    background: white;
     color: var(--ink);
 }
 
@@ -41,6 +42,7 @@
 }
 
 .proof-content {
+    min-width: 0;
     padding-top: 90px;
     padding-bottom: 90px;
 }
@@ -49,12 +51,20 @@
     margin-top: 100px;
 }
 
+.proof-text {
+    max-width: 58ch;
+    margin: clamp(24px, 3vw, 40px) 0 0;
+    font-size: clamp(16px, 1.4vw, 20px);
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+}
+
 .proof-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 44px 30px;
     max-width: 520px;
-    margin-top: 100px;
+    margin-top: clamp(32px, 4vw, 56px);
 }
 
 .proof-grid strong {
@@ -93,6 +103,6 @@
     }
 
     .proof-grid {
-        margin-top: 70px;
+        margin-top: 36px;
     }
 }

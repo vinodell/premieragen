@@ -58,7 +58,6 @@
 }
 
 .hero-copy {
-    border: 1px solid var(--black);
     width: 60%;
     max-width: 700px;
     padding: clamp(20px, 3vw, 40px);

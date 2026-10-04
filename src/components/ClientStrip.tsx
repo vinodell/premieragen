@@ -13,9 +13,9 @@ export const ClientStrip = () => {
     >
       <div className="logo-strip-heading">
         <p>
-          Наш послужной
+          наш профессиональный
           <br />
-          список
+          опыт
         </p>
         <button
           className="logo-strip-toggle"

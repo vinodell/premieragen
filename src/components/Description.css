@@ -4,8 +4,8 @@
     background-color: var(--pink);
 
     background-image:
-        linear-gradient(to right, #221b1b 1px, transparent 1px),
-        linear-gradient(to bottom, #221b1b 1px, transparent 1px);
+        linear-gradient(to right, rgb(128, 122, 122) 1px, transparent 1px),
+        linear-gradient(to bottom, rgb(128, 122, 122) 1px, transparent 1px);
 
     background-size: 40px 40px;
 }

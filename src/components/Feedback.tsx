@@ -6,57 +6,37 @@ import { SectionKicker } from "./SectionKicker";
 import "./Feedback.css";
 
 const FeedbackCard = ({ testimonial, index, total }: TestimonialCardProps) => {
-  const [photoFailed, setPhotoFailed] = useState(false);
-
   return (
     <article
       className="testimonial-card"
       aria-roledescription="слайд"
       aria-label={`${index + 1} из ${total}: ${testimonial.name}`}
     >
-      <div className="testimonial-person">
-        <div className="testimonial-photo">
-          {testimonial.photo && !photoFailed ? (
-            <img
-              src={testimonial.photo}
-              alt={testimonial.name}
-              loading="lazy"
-              width={480}
-              height={560}
-              onError={() => setPhotoFailed(true)}
-            />
-          ) : (
-            <svg viewBox="0 0 240 280" fill="none" aria-hidden="true">
-              <circle cx="120" cy="102" r="43" fill="currentColor" />
-              <path d="M30 280v-40a90 90 0 0 1 180 0v40" fill="currentColor" />
-              <circle
-                cx="120"
-                cy="140"
-                r="109"
-                stroke="currentColor"
-                strokeWidth="1"
-              />
-            </svg>
-          )}
-          <span className="testimonial-photo-label" aria-hidden="true">
-            CLIENT / {String(index + 1).padStart(2, "0")}
-          </span>
-        </div>
-        <div className="testimonial-person-info">
+      <header className="testimonial-context">
+        <div className="testimonial-industry">
+          <span className="testimonial-label">Область / компания</span>
           <h3>{testimonial.name}</h3>
-          <p>{testimonial.role}</p>
-          <span>{testimonial.company}</span>
+          <p>{testimonial.company}</p>
+          {testimonial.role && <p>{testimonial.role}</p>}
         </div>
-      </div>
+        <div className="testimonial-direction">
+          <span className="testimonial-label">Направление работы</span>
+          <p>{testimonial.service}</p>
+        </div>
+        <span className="testimonial-number" aria-hidden="true">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+      </header>
       <div className="testimonial-story">
-        <span className="testimonial-service">{testimonial.service}</span>
-        <span className="testimonial-quote-mark" aria-hidden="true">
-          “
-        </span>
-        <blockquote>{testimonial.quote}</blockquote>
-        <span className="testimonial-signature">
-          Вместе. По делу. С результатом.
-        </span>
+        <span className="testimonial-quote-mark" aria-hidden="true">“</span>
+        <div
+          className="testimonial-quote-scroll"
+          tabIndex={0}
+          role="region"
+          aria-label={`Текст отзыва: ${testimonial.name}`}
+        >
+          <blockquote>{testimonial.quote}</blockquote>
+        </div>
       </div>
     </article>
   );

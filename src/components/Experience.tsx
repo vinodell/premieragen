@@ -26,6 +26,12 @@ export const Experience = () => {
           <br />
           <em>работает</em> на вас.
         </h2>
+        <p className="proof-text">
+          Мы не просто подрядчик по отдельному каналу, а команда уровня
+          IN-HOUSE MARKETING DEPARTMENT, которая соединяет стратегию,
+          performance, аналитику и клиентский опыт без необходимости содержать
+          ее в штате.
+        </p>
         <div className="proof-grid">
           {PROOF_STATS.map(({ value, label }) => (
             <div key={label}>
