@@ -1,32 +1,34 @@
-import { CompanyIcon } from "./icons";
-import { AlphaLogo } from "./icons/AlphaLogo";
-import { AlrosaLogo } from "./icons/AlrosaLogo";
-import { AvitoLogo } from "./icons/AvitoLogo";
-import { BurgerkingLogo } from "./icons/BurgerkingLogo";
-import { DltLogo } from "./icons/DltLogo";
-import { DonstroiLogo } from "./icons/DonstroiLogo";
+import {
+  AvitoLogo,
+  CompanyIcon,
+  YandexLogo,
+  SberLogo,
+  IviLogo,
+  BurgerkingLogo,
+  SkillboxLogo,
+  LetualLogo,
+  LamodaLogo,
+  AlphaLogo,
+  AlrosaLogo,
+  DltLogo,
+  DonstroiLogo,
+  GoldenappleLogo,
+  HoffLogo,
+  OkkoLogo,
+  SamoletLogo,
+  SimplewineLogo,
+  SokolovLogo,
+  SportmasterLogo,
+} from "./icons";
 import { FivegoldLogo } from "./icons/FivegoldLogo";
-import { GoldenappleLogo } from "./icons/GoldenappleLogo";
-import { HoffLogo } from "./icons/HoffLogo";
 import { InvitroLogo } from "./icons/InvitroLogo";
-import { IviLogo } from "./icons/IviLogo";
-import { LamodaLogo } from "./icons/LamodaLogo";
 import { LemanaproLogo } from "./icons/LemanaproLogo";
-import { LetualLogo } from "./icons/LetualLogo";
 import { MvideoLogo } from "./icons/MvideoLogo";
-import { OkkoLogo } from "./icons/OkkoLogo";
 import { OmdLogo } from "./icons/OmdLogo";
 import { SamokatLogo } from "./icons/SamokatLogo";
-import { SamoletLogo } from "./icons/SamoletLogo";
-import { SberLogo } from "./icons/SberLogo";
-import { SimplewineLogo } from "./icons/SimplewineLogo";
-import { SkillboxLogo } from "./icons/SkillboxLogo";
-import { SokolovLogo } from "./icons/SokolovLogo";
 import { SovcombankLogo } from "./icons/SovcombankLogo";
-import { SportmasterLogo } from "./icons/SportmasterLogo";
 import { TbankLogo } from "./icons/TbankLogo";
 import { TwelvestoryLogo } from "./icons/TwelvestoryLogo";
-import { YandexLogo } from "./icons/YandexLogo";
 import { ZdravcityLogo } from "./icons/ZdravcityLogo";
 import type {
   ServiceDiagramNode,
@@ -64,12 +66,11 @@ export const SECTION_LABELS = {
 
 export const HERO_IMAGE = {
   src: `${process.env.PUBLIC_URL || ""}/kate8.png`,
-  alt: "Катя, специалист по маркетингу",
+  alt: "Катя - основатель Premier Agency",
 } as const;
 
-export const COPYRIGHT_YEAR = 2026;
 export const CONTACT_REQUEST_OPTIONS = [
-  "аудит текущей рекламы",
+  "аудит текущей рекламной кампании",
   "сайт есть, мало продаж",
   "нужен сайт и запуск рекламы",
   "продвижение на маркетплейсах",
@@ -138,7 +139,7 @@ export const CLIENTS: readonly Client[] = [
   { name: "Bausch", Icon: CompanyIcon },
   { name: "World Class", Icon: CompanyIcon },
   { name: "Апельсин", Icon: CompanyIcon },
-  { name: "Ivi", Icon: IviLogo }, 
+  { name: "Ivi", Icon: IviLogo },
   { name: "Okko", Icon: OkkoLogo },
   { name: "Rendez-Vous", Icon: CompanyIcon },
   { name: "Спортмастер", Icon: SportmasterLogo },
@@ -276,20 +277,98 @@ export const SERVICE_DIAGRAM_STEP_MS = 3000;
 export const SERVICE_DIAGRAM_CYCLE_PAUSE_MS = 1000;
 
 export const SERVICE_DIAGRAM_NODES: readonly ServiceDiagramNode[] = [
-  { id: "marketing", lines: ["Маркетинг", "стратегия"], column: 2, row: 0, groups: [5] },
-  { id: "web-design", lines: ["Веб-", "дизайн"], column: 0, row: 1, groups: [1] },
-  { id: "content", lines: ["Создание", "контента"], column: 3, row: 1, groups: [1] },
-  { id: "social", lines: ["Социальные", "сети"], column: 4, row: 1, groups: [3] },
-  { id: "brand-strategy", lines: ["Стратегия", "бренда"], column: 1, row: 2, groups: [2] },
+  {
+    id: "marketing",
+    lines: ["Маркетинг", "стратегия"],
+    column: 2,
+    row: 0,
+    groups: [5],
+  },
+  {
+    id: "web-design",
+    lines: ["Веб-", "дизайн"],
+    column: 0,
+    row: 1,
+    groups: [1],
+  },
+  {
+    id: "content",
+    lines: ["Создание", "контента"],
+    column: 3,
+    row: 1,
+    groups: [1],
+  },
+  {
+    id: "social",
+    lines: ["Социальные", "сети"],
+    column: 4,
+    row: 1,
+    groups: [3],
+  },
+  {
+    id: "brand-strategy",
+    lines: ["Стратегия", "бренда"],
+    column: 1,
+    row: 2,
+    groups: [2],
+  },
   { id: "seo", lines: ["SEO-", "продвижение"], column: 2, row: 2, groups: [5] },
-  { id: "video", lines: ["Видео-", "маркетинг"], column: 3, row: 2, groups: [] },
-  { id: "ppc", lines: ["Контекстная", "реклама"], column: 5, row: 2, groups: [3] },
-  { id: "identity", lines: ["Айдентика", "бренда"], column: 0, row: 3, groups: [2, 4] },
-  { id: "email", lines: ["Email-", "маркетинг"], column: 3, row: 3, groups: [5] },
-  { id: "pr", lines: ["PR и", "коммуникации"], column: 2, row: 4, groups: [2, 4] },
-  { id: "development", lines: ["Разработка", "сайтов"], column: 3, row: 4, groups: [] },
-  { id: "campaign", lines: ["Рекламная", "стратегия"], column: 4, row: 4, groups: [3] },
-  { id: "support", lines: ["Поддержка", "проектов"], column: 1, row: 5, groups: [] },
+  {
+    id: "video",
+    lines: ["Видео-", "маркетинг"],
+    column: 3,
+    row: 2,
+    groups: [],
+  },
+  {
+    id: "ppc",
+    lines: ["Контекстная", "реклама"],
+    column: 5,
+    row: 2,
+    groups: [3],
+  },
+  {
+    id: "identity",
+    lines: ["Айдентика", "бренда"],
+    column: 0,
+    row: 3,
+    groups: [2, 4],
+  },
+  {
+    id: "email",
+    lines: ["Email-", "маркетинг"],
+    column: 3,
+    row: 3,
+    groups: [5],
+  },
+  {
+    id: "pr",
+    lines: ["PR и", "коммуникации"],
+    column: 2,
+    row: 4,
+    groups: [2, 4],
+  },
+  {
+    id: "development",
+    lines: ["Разработка", "сайтов"],
+    column: 3,
+    row: 4,
+    groups: [],
+  },
+  {
+    id: "campaign",
+    lines: ["Рекламная", "стратегия"],
+    column: 4,
+    row: 4,
+    groups: [3],
+  },
+  {
+    id: "support",
+    lines: ["Поддержка", "проектов"],
+    column: 1,
+    row: 5,
+    groups: [],
+  },
   { id: "ux", lines: ["UX-", "аудит"], column: 4, row: 5, groups: [] },
   { id: "print", lines: ["Печатный", "дизайн"], column: 5, row: 5, groups: [] },
 ];

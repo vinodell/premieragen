@@ -1,7 +1,7 @@
+import { useMemo } from "react";
 import {
   CONTACT_EMAIL,
   TELEGRAM_URL,
-  COPYRIGHT_YEAR,
   SECTION_IDS,
 } from "../consts";
 import { Brand } from "./Brand";
@@ -9,6 +9,8 @@ import { Brand } from "./Brand";
 import "./Footer.css";
 
 export const Footer = () => {
+  const currentYear = useMemo(() => new Date().getFullYear(), []);
+
   return (
     <footer className="site-footer">
       <a className="brand" href={`#${SECTION_IDS.top}`}>
@@ -25,7 +27,7 @@ export const Footer = () => {
         </a>
         <a href={`mailto:${CONTACT_EMAIL}`}>Email ↗</a>
       </div>
-      <span className="footer-year">© {COPYRIGHT_YEAR}</span>
+      <span className="footer-year">© {currentYear}</span>
     </footer>
   );
 };
