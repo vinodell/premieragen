@@ -34,7 +34,7 @@ export const SECTION_LABELS = {
 } as const;
 
 export const HERO_IMAGE = {
-  src: `${process.env.PUBLIC_URL || ""}/kate4.png`,
+  src: `${process.env.PUBLIC_URL || ""}/kate8.png`,
   alt: "Катя, специалист по маркетингу",
 } as const;
 
