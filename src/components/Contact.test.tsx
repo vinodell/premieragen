@@ -7,8 +7,12 @@ jest.mock("../api", () => ({ sendData: jest.fn() }));
 const sendMock = sendData as jest.MockedFunction<typeof sendData>;
 
 const fillForm = () => {
-  fireEvent.change(screen.getByLabelText("Ваше имя"), { target: { value: " Катя " } });
-  fireEvent.change(screen.getByLabelText("Рабочий email"), { target: { value: "kate@example.com" } });
+  fireEvent.change(screen.getByLabelText("Ваше имя"), {
+    target: { value: " Катя " },
+  });
+  fireEvent.change(screen.getByLabelText("Рабочий email"), {
+    target: { value: "kate@example.com" },
+  });
   fireEvent.change(screen.getByLabelText("Что нужно улучшить?"), {
     target: { value: CONTACT_REQUEST_OPTIONS[0] },
   });
@@ -26,7 +30,9 @@ test("validates and sends the form, shows success and resets fields", async () =
   fireEvent.click(screen.getByRole("button", { name: /Отправить запрос/ }));
   expect(await screen.findByText(/Заявка отправлена!/)).toBeInTheDocument();
   expect(sendMock).toHaveBeenCalledWith({
-    name: "Катя", email: "kate@example.com", feature: CONTACT_REQUEST_OPTIONS[0],
+    name: "Катя",
+    email: "kate@example.com",
+    feature: CONTACT_REQUEST_OPTIONS[0],
     date: new Date("2099-01-01T12:00").toISOString(),
   });
   expect(screen.getByLabelText("Ваше имя")).toHaveValue("");
@@ -34,7 +40,12 @@ test("validates and sends the form, shows success and resets fields", async () =
 
 test("blocks repeated clicks while sending and preserves fields on error", async () => {
   let rejectRequest: (reason: Error) => void = () => {};
-  sendMock.mockImplementation(() => new Promise((_, reject) => { rejectRequest = reject; }));
+  sendMock.mockImplementation(
+    () =>
+      new Promise((_, reject) => {
+        rejectRequest = reject;
+      }),
+  );
   render(<Contact />);
   fillForm();
   fireEvent.click(screen.getByRole("button", { name: /Отправить запрос/ }));
@@ -43,15 +54,23 @@ test("blocks repeated clicks while sending and preserves fields on error", async
   fireEvent.click(button);
   expect(sendMock).toHaveBeenCalledTimes(1);
   rejectRequest(new Error("Network error"));
-  expect(await screen.findByText(/Не удалось отправить заявку/)).toBeInTheDocument();
+  expect(
+    await screen.findByText(/Не удалось отправить заявку/),
+  ).toBeInTheDocument();
   expect(screen.getByLabelText("Ваше имя")).toHaveValue(" Катя ");
-  await waitFor(() => expect(screen.getByRole("button", { name: /Отправить запрос/ })).toBeEnabled());
+  await waitFor(() =>
+    expect(
+      screen.getByRole("button", { name: /Отправить запрос/ }),
+    ).toBeEnabled(),
+  );
 });
 
 test("rejects a whitespace-only name", () => {
   render(<Contact />);
   fillForm();
-  fireEvent.change(screen.getByLabelText("Ваше имя"), { target: { value: "   " } });
+  fireEvent.change(screen.getByLabelText("Ваше имя"), {
+    target: { value: "   " },
+  });
   fireEvent.click(screen.getByRole("button", { name: /Отправить запрос/ }));
   expect(screen.getByLabelText("Ваше имя")).toBeInvalid();
   expect(sendMock).not.toHaveBeenCalled();

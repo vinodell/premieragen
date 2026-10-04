@@ -28,7 +28,9 @@ const FeedbackCard = ({ testimonial, index, total }: TestimonialCardProps) => {
         </span>
       </header>
       <div className="testimonial-story">
-        <span className="testimonial-quote-mark" aria-hidden="true">“</span>
+        <span className="testimonial-quote-mark" aria-hidden="true">
+          “
+        </span>
         <div
           className="testimonial-quote-scroll"
           tabIndex={0}

@@ -13,9 +13,6 @@ import {
 
 import "./styles.css";
 
-// TODO:
-// Катины фотокарточки покрутить
-
 function App() {
   return (
     <div className="site-shell">

@@ -21,7 +21,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx --max-warnings=0",
     "deploy": "npm run build && wrangler deploy",
-    "preview": "npm run build && wrangler dev"
+    "preview": "npm run build && wrangler dev",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +47,7 @@
     "@types/node": "^18.19.130",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "prettier": "^3.9.9",
     "typescript": "^4.9.5",
     "wrangler": "^4.145.0"
   }

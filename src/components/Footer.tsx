@@ -1,9 +1,5 @@
 import { useMemo } from "react";
-import {
-  CONTACT_EMAIL,
-  TELEGRAM_URL,
-  SECTION_IDS,
-} from "../consts";
+import { CONTACT_EMAIL, TELEGRAM_URL, SECTION_IDS } from "../consts";
 import { Brand } from "./Brand";
 
 import "./Footer.css";
