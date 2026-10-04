@@ -1,4 +1,33 @@
 import { CompanyIcon } from "./icons";
+import { AlphaLogo } from "./icons/AlphaLogo";
+import { AlrosaLogo } from "./icons/AlrosaLogo";
+import { AvitoLogo } from "./icons/AvitoLogo";
+import { BurgerkingLogo } from "./icons/BurgerkingLogo";
+import { DltLogo } from "./icons/DltLogo";
+import { DonstroiLogo } from "./icons/DonstroiLogo";
+import { FivegoldLogo } from "./icons/FivegoldLogo";
+import { GoldenappleLogo } from "./icons/GoldenappleLogo";
+import { HoffLogo } from "./icons/HoffLogo";
+import { InvitroLogo } from "./icons/InvitroLogo";
+import { IviLogo } from "./icons/IviLogo";
+import { LamodaLogo } from "./icons/LamodaLogo";
+import { LemanaproLogo } from "./icons/LemanaproLogo";
+import { LetualLogo } from "./icons/LetualLogo";
+import { MvideoLogo } from "./icons/MvideoLogo";
+import { OkkoLogo } from "./icons/OkkoLogo";
+import { OmdLogo } from "./icons/OmdLogo";
+import { SamokatLogo } from "./icons/SamokatLogo";
+import { SamoletLogo } from "./icons/SamoletLogo";
+import { SberLogo } from "./icons/SberLogo";
+import { SimplewineLogo } from "./icons/SimplewineLogo";
+import { SkillboxLogo } from "./icons/SkillboxLogo";
+import { SokolovLogo } from "./icons/SokolovLogo";
+import { SovcombankLogo } from "./icons/SovcombankLogo";
+import { SportmasterLogo } from "./icons/SportmasterLogo";
+import { TbankLogo } from "./icons/TbankLogo";
+import { TwelvestoryLogo } from "./icons/TwelvestoryLogo";
+import { YandexLogo } from "./icons/YandexLogo";
+import { ZdravcityLogo } from "./icons/ZdravcityLogo";
 import type {
   ServiceDiagramNode,
   ServiceDiagramConnection,
@@ -56,63 +85,63 @@ export const NAV_ITEMS: readonly NavItem[] = [
 ];
 
 export const CLIENTS: readonly Client[] = [
-  { name: "Яндекс", Icon: CompanyIcon },
-  { name: "Avito", Icon: CompanyIcon },
-  { name: "СберМаркетинг", Icon: CompanyIcon },
-  { name: "OMD", Icon: CompanyIcon },
+  { name: "Яндекс", Icon: YandexLogo },
+  { name: "Avito", Icon: AvitoLogo },
+  { name: "СберМаркетинг", Icon: SberLogo },
+  { name: "OMD", Icon: OmdLogo },
   { name: "Publicis Group", Icon: CompanyIcon },
   { name: "PepsiCo", Icon: CompanyIcon },
-  { name: "Lamoda", Icon: CompanyIcon },
-  { name: "SOKOLOV", Icon: CompanyIcon },
-  { name: "Золотое Яблоко", Icon: CompanyIcon },
-  { name: "Alrosa Diamonds", Icon: CompanyIcon },
-  { name: "585 GOLD", Icon: CompanyIcon },
-  { name: "12 STOREEZ", Icon: CompanyIcon },
-  { name: "ЦУМ", Icon: CompanyIcon },
-  { name: "Т‑Банк", Icon: CompanyIcon },
-  { name: "Совкомбанк", Icon: CompanyIcon },
-  { name: "Альфа‑Банк", Icon: CompanyIcon },
+  { name: "Lamoda", Icon: LamodaLogo },
+  { name: "SOKOLOV", Icon: SokolovLogo },
+  { name: "Золотое Яблоко", Icon: GoldenappleLogo },
+  { name: "Alrosa Diamonds", Icon: AlrosaLogo },
+  { name: "585 GOLD", Icon: FivegoldLogo },
+  { name: "12 STOREEZ", Icon: TwelvestoryLogo },
+  { name: "ЦУМ", Icon: DltLogo },
+  { name: "Т‑Банк", Icon: TbankLogo },
+  { name: "Совкомбанк", Icon: SovcombankLogo },
+  { name: "Альфа‑Банк", Icon: AlphaLogo },
   { name: "BORK", Icon: CompanyIcon },
   { name: "Иль де Боте", Icon: CompanyIcon },
-  { name: "Лэтуаль", Icon: CompanyIcon },
+  { name: "Лэтуаль", Icon: LetualLogo },
   { name: "Рив Гош", Icon: CompanyIcon },
   { name: "X5 Retail Group", Icon: CompanyIcon },
   { name: "Максидом", Icon: CompanyIcon },
-  { name: "Hoff", Icon: CompanyIcon },
-  { name: "Simple Wine", Icon: CompanyIcon },
+  { name: "Hoff", Icon: HoffLogo },
+  { name: "Simple Wine", Icon: SimplewineLogo },
   { name: "Эвалар", Icon: CompanyIcon },
   { name: "Биннофарм Групп", Icon: CompanyIcon },
   { name: "36,6", Icon: CompanyIcon },
   { name: "ФармСтандарт", Icon: CompanyIcon },
-  { name: "ЗдравСити", Icon: CompanyIcon },
-  { name: "Самолет", Icon: CompanyIcon },
+  { name: "ЗдравСити", Icon: ZdravcityLogo },
+  { name: "Самолет", Icon: SamoletLogo },
   { name: "ПИК", Icon: CompanyIcon },
-  { name: "ДонСтрой", Icon: CompanyIcon },
+  { name: "ДонСтрой", Icon: DonstroiLogo },
   { name: "LEGENDA", Icon: CompanyIcon },
-  { name: "Инвитро", Icon: CompanyIcon },
+  { name: "Инвитро", Icon: InvitroLogo },
   { name: "Аскона", Icon: CompanyIcon },
-  { name: "М.Видео", Icon: CompanyIcon },
+  { name: "М.Видео", Icon: MvideoLogo },
   { name: "Вин Лаб", Icon: CompanyIcon },
   { name: "Акрихин", Icon: CompanyIcon },
-  { name: "Лемана ПРО", Icon: CompanyIcon },
-  { name: "Бургер Кинг", Icon: CompanyIcon },
+  { name: "Лемана ПРО", Icon: LemanaproLogo },
+  { name: "Бургер Кинг", Icon: BurgerkingLogo },
   { name: "Светофор", Icon: CompanyIcon },
   { name: "Комус", Icon: CompanyIcon },
   { name: "LibreDerm", Icon: CompanyIcon },
   { name: "Улыбка Радуги", Icon: CompanyIcon },
   { name: "Бронхипрет", Icon: CompanyIcon },
   { name: "БКС", Icon: CompanyIcon },
-  { name: "Самокат", Icon: CompanyIcon },
+  { name: "Самокат", Icon: SamokatLogo },
   { name: "Profi.ru", Icon: CompanyIcon },
-  { name: "SKILLBOX", Icon: CompanyIcon },
+  { name: "Skillbox", Icon: SkillboxLogo },
   { name: "Петровакс", Icon: CompanyIcon },
   { name: "Bausch", Icon: CompanyIcon },
   { name: "World Class", Icon: CompanyIcon },
   { name: "Апельсин", Icon: CompanyIcon },
-  { name: "Ivi", Icon: CompanyIcon },
-  { name: "Okko", Icon: CompanyIcon },
+  { name: "Ivi", Icon: IviLogo }, 
+  { name: "Okko", Icon: OkkoLogo },
   { name: "Rendez-Vous", Icon: CompanyIcon },
-  { name: "Спортмастер", Icon: CompanyIcon },
+  { name: "Спортмастер", Icon: SportmasterLogo },
   { name: "La Redoute", Icon: CompanyIcon },
   { name: "Love Republic", Icon: CompanyIcon },
   { name: "Сантехника онлайн", Icon: CompanyIcon },
@@ -222,15 +251,15 @@ export const TESTIMONIALS: readonly Testimonial[] = [
   //   quote:
   //     "Я провела конкурентный анализ. У конкурентки сумка дороже. Работаем.",
   // },
-  // {
-  //   id: "performance-demo",
-  //   name: "Батя",
-  //   role: "Ушел из дома",
-  //   company: "Компания / E-commerce",
-  //   service: "хуярить пивко на диване",
-  //   quote:
-  //     "Появилось ощущение... хочется посрать в унитаз, а не в штаны. В целом, доволен.",
-  // },
+  {
+    id: "performance-demo",
+    name: "Батя",
+    role: "",
+    company: "Компания / E-commerce",
+    service: "хуярить пивко на диване",
+    quote:
+      "Появилось ощущение... хочется посрать в унитаз, а не в штаны. В целом, доволен.",
+  },
   // {
   //   id: "performance-demo",
   //   name: "Брат",
