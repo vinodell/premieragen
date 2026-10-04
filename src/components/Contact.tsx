@@ -65,35 +65,35 @@ export const Contact = () => {
 
   return (
     <section className="contact-section section-pad" id={SECTION_IDS.contact}>
-          <div className="contact-gallery" aria-hidden="true">
-            {["phone.JPG", "phone2.JPG", "phone3.JPG"].map((file) => (
-              <img
-                key={file}
-                src={`${process.env.PUBLIC_URL || ""}/${file}`}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                width={240}
-                height={320}
-              />
-            ))}
-          </div>
+      <div className="contact-gallery" aria-hidden="true">
+        {["phone.JPG", "phone2.JPG", "phone3.JPG"].map((file) => (
+          <img
+            key={file}
+            src={`${process.env.PUBLIC_URL || ""}/${file}`}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width={240}
+            height={320}
+          />
+        ))}
+      </div>
       <div className="contact-grid">
         <div className="contact-intro">
-      <div className="contact-head">
-        <SectionKicker index={SECTION_LABELS.contact.index}>
-          {SECTION_LABELS.contact.title}
-        </SectionKicker>
-        <h2>
-          Расскажите,
-          <br />
-          <em>что строите</em>
-        </h2>
-      </div>
+          <div className="contact-head">
+            <SectionKicker index={SECTION_LABELS.contact.index}>
+              {SECTION_LABELS.contact.title}
+            </SectionKicker>
+            <h2>
+              Расскажите,
+              <br />
+              <em>что строите</em>
+            </h2>
+          </div>
 
           <p className="contact-lead">
-            а мы вернёмся с планом аудита или предложением по
-            каналу, который даст вашему бизнесу следующий рывок.
+            а мы вернёмся с планом аудита или предложением по каналу, который
+            даст вашему бизнесу следующий рывок.
           </p>
           <p className="contact-meta">
             Обычно отвечаем в течение рабочего дня
@@ -174,7 +174,7 @@ export const Contact = () => {
             />
           </label>
           <p className="contact-form-hint" id="appointment-hint">
-            Время звонка — в вашем часовом поясе.
+            Время звонка - в вашем часовом поясе.
           </p>
           <button
             className="button button-dark"
