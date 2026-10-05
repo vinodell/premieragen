@@ -1,19 +1,19 @@
 import { SECTION_IDS } from "./consts";
 import {
+  Contact,
   ClientStrip,
-  Header,
-  Intro,
   Description,
   Experience,
   Footer,
-  Services,
-  Contact,
+  Header,
+  Intro,
   Feedback,
+  Services,
 } from "./components";
 
 import "./styles.css";
 
-function App() {
+export const App = () => {
   return (
     <div className="site-shell">
       <Header />
@@ -29,6 +29,4 @@ function App() {
       <Footer />
     </div>
   );
-}
-
-export default App;
+};
