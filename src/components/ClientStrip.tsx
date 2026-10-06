@@ -77,7 +77,8 @@ export const ClientStrip = () => {
                   src={`${process.env.PUBLIC_URL || ""}/clients/${id}.svg`}
                   alt=""
                   aria-hidden="true"
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="low"
                   decoding="async"
                   style={{ width, height }}
                 />
@@ -99,7 +100,8 @@ export const ClientStrip = () => {
                   src={`${process.env.PUBLIC_URL || ""}/clients/${id}.svg`}
                   alt=""
                   aria-hidden="true"
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="low"
                   decoding="async"
                   style={{ width, height }}
                 />
