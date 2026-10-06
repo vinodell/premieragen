@@ -16,6 +16,7 @@ export const ServiceDiagram = () => {
   const [activeGroup, setActiveGroup] = useState(1);
   const [paused, setPaused] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [pageVisible, setPageVisible] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -28,20 +29,25 @@ export const ServiceDiagram = () => {
     }
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => setReducedMotion(preference.matches);
+    const updateVisibility = () =>
+      setPageVisible(document.visibilityState !== "hidden");
     update();
+    updateVisibility();
     preference.addEventListener("change", update);
+    document.addEventListener("visibilitychange", updateVisibility);
     const observer = new IntersectionObserver(([entry]) =>
       setVisible(entry.isIntersecting),
     );
     if (containerRef.current) observer.observe(containerRef.current);
     return () => {
       preference.removeEventListener("change", update);
+      document.removeEventListener("visibilitychange", updateVisibility);
       observer.disconnect();
     };
   }, []);
 
   useEffect(() => {
-    if (paused || !visible || reducedMotion) return;
+    if (paused || !visible || !pageVisible || reducedMotion) return;
     const timeout = window.setTimeout(
       () =>
         setActiveGroup((group) => (group % SERVICE_DIAGRAM_GROUP_COUNT) + 1),
@@ -51,7 +57,7 @@ export const ServiceDiagram = () => {
           : 0),
     );
     return () => window.clearTimeout(timeout);
-  }, [activeGroup, paused, visible, reducedMotion]);
+  }, [activeGroup, paused, visible, pageVisible, reducedMotion]);
 
   return (
     <div className="service-diagram" ref={containerRef}>

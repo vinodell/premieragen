@@ -7,7 +7,22 @@ export const Intro = () => {
     <section className="hero section-pad" aria-labelledby="hero-title">
       <div className="image-container">
         <div className="hero-visual">
-          <img src={HERO_IMAGE.src} alt={HERO_IMAGE.alt} />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={HERO_IMAGE.srcSet}
+              sizes="(max-width: 50em) 111vw, 100vw"
+            />
+            <img
+              src={HERO_IMAGE.src}
+              alt={HERO_IMAGE.alt}
+              width={HERO_IMAGE.width}
+              height={HERO_IMAGE.height}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
           <h1
             className="hero-image-title"
             id="hero-title"

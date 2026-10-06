@@ -36,7 +36,6 @@
     min-width: 0;
     min-height: 26.5625rem;
     padding: 1.5rem;
-    cursor: pointer;
     transition: transform .3s ease;
 }
 

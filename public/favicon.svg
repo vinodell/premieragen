@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Premier Agency</title>
+  <circle
+    cx="32"
+    cy="32"
+    r="29"
+    fill="#202d85"
+    stroke="#d1b0b3"
+    stroke-width="2"
+  />
+  <path
+    fill="#d1b0b3"
+    fill-rule="evenodd"
+    d="M22 17h9c7.2 0 11 3.8 11 10.2S38.2 37.5 31 37.5h-4.5V47H22V17Zm4.5 4.3v11.9H31c4.4 0 6.6-2.1 6.6-6s-2.2-5.9-6.6-5.9h-4.5Z"
+  />
+</svg>

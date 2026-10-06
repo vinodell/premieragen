@@ -1,15 +1,18 @@
-import { useMemo } from "react";
-import { CONTACT_EMAIL, TELEGRAM_URL, SECTION_IDS } from "../consts";
+import { BRAND, CONTACT_EMAIL, TELEGRAM_URL, SECTION_IDS } from "../consts";
 import { Brand } from "./Brand";
 
 import "./Footer.css";
 
 export const Footer = () => {
-  const currentYear = useMemo(() => new Date().getFullYear(), []);
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="site-footer">
-      <a className="brand" href={`#${SECTION_IDS.top}`}>
+      <a
+        className="brand"
+        href={`#${SECTION_IDS.top}`}
+        aria-label={`${BRAND.name} — в начало`}
+      >
         <Brand />
       </a>
       <p>

@@ -65,10 +65,9 @@
 
 .logo-icon {
     display: block;
-    flex: 0 0 2.25rem;
-    width: 2.25rem;
-    height: 2.25rem;
-    color: var(--teal);
+    flex: 0 0 auto;
+    width: 3.4375rem;
+    height: 3.4375rem;
 }
 
 .logo-track.is-paused,

@@ -1,4 +1,4 @@
-import type { ComponentType, ReactNode, SVGProps } from "react";
+import type { ReactNode } from "react";
 
 export interface NavItem {
   readonly label: string;
@@ -25,11 +25,12 @@ export interface SectionKickerProps {
   readonly light?: boolean;
 }
 
-export type CompanyIconProps = SVGProps<SVGSVGElement>;
-
 export interface Client {
+  readonly id: string;
   readonly name: string;
-  readonly Icon: ComponentType<CompanyIconProps>;
+  readonly width?: string;
+  readonly height?: string;
+  readonly showName?: boolean;
 }
 
 export interface Testimonial {
@@ -39,7 +40,6 @@ export interface Testimonial {
   readonly company: string;
   readonly service: string;
   readonly quote: string;
-  readonly photo?: string;
 }
 
 export interface TestimonialCardProps {
