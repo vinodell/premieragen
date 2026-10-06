@@ -13,6 +13,8 @@ import {
 
 import "./styles.css";
 
+// TODO: в случае не отправки заявки в телегу - отправлять на почту
+
 export const App = () => {
   return (
     <div className="site-shell">
