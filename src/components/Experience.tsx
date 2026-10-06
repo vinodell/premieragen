@@ -18,7 +18,7 @@ export const Experience = () => {
         </span>
       </div>
       <div className="proof-content section-pad">
-        <SectionKicker index={SECTION_LABELS.cases.index} light>
+        <SectionKicker index={SECTION_LABELS.cases.index}>
           {SECTION_LABELS.cases.title}
         </SectionKicker>
         <h2>

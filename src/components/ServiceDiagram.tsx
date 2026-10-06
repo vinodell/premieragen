@@ -55,12 +55,7 @@ export const ServiceDiagram = () => {
 
   return (
     <div className="service-diagram" ref={containerRef}>
-      <div
-        className="service-diagram-viewport"
-        tabIndex={0}
-        role="group"
-        aria-label="Схема услуг — на небольшом экране доступна горизонтальная прокрутка"
-      >
+      <div className="service-diagram-viewport">
         <svg
           className="service-diagram-canvas"
           viewBox="0 0 700 687"
@@ -89,7 +84,7 @@ export const ServiceDiagram = () => {
               className={`service-diagram-node${groups.includes(activeGroup) && !reducedMotion ? " is-active" : ""}`}
             >
               <path d="M 0 0 H 82 L 102 20 V 102 H 0 Z" />
-              <text x="11" y="68">
+              <text x="11" y="68" fontSize="12">
                 {lines.map((line, index) => (
                   <tspan key={line} x="11" dy={index === 0 ? 0 : 17}>
                     {line}
@@ -100,6 +95,21 @@ export const ServiceDiagram = () => {
           ))}
         </svg>
       </div>
+      <ul
+        className="service-diagram-compact"
+        aria-label="Маркетинговые услуги как единая система"
+      >
+        {SERVICE_DIAGRAM_NODES.map(({ id, lines, groups }) => (
+          <li
+            key={id}
+            className={`service-diagram-card${groups.includes(activeGroup) && !reducedMotion ? " is-active" : ""}`}
+          >
+            {lines.map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </li>
+        ))}
+      </ul>
       <button
         className="service-diagram-toggle"
         type="button"

@@ -1,11 +1,11 @@
 export const SokolovLogo = () => (
   <svg
     version="1.1"
-    width="50"
-    height="50"
+    width="3.125rem"
+    height="3.125rem"
     xmlns="http://www.w3.org/2000/svg"
-    x="0px"
-    y="0px"
+    x="0"
+    y="0"
     viewBox="0 0 1000 137.9310303"
   >
     <path

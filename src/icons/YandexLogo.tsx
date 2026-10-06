@@ -3,8 +3,8 @@ export const YandexLogo = () => (
     id="Icon/Search/Yandex"
     viewBox="0 0 18 18"
     xmlns="http://www.w3.org/2000/svg"
-    width="55"
-    height="55"
+    width="3.4375rem"
+    height="3.4375rem"
     fill="none"
   >
     <path fill="#FC3F1D" d="M0 0h18v18H0z" />

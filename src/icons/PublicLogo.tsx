@@ -1,8 +1,8 @@
 export const PublicLogo = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="55"
-    height="55"
+    width="3.4375rem"
+    height="3.4375rem"
     viewBox="0 0 192.756 192.756"
   >
     <path

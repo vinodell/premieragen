@@ -2,8 +2,8 @@ export const PikLogo = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     id="logo"
-    width="55"
-    height="55"
+    width="3.4375rem"
+    height="3.4375rem"
     version="1.1"
   >
     <path

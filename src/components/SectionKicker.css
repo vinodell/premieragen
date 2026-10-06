@@ -1,8 +1,9 @@
 .section-kicker {
     display: flex;
-    gap: 12px;
+    min-width: 0;
+    gap: .75rem;
     align-items: center;
-    font: 14px 'DM Mono', monospace;
+    font: .875rem/1.4 'DM Mono', monospace;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: .06em;
@@ -10,7 +11,13 @@
 }
 
 .section-kicker span:first-child {
+    flex-shrink: 0;
     color: var(--ink);
+}
+
+.section-kicker span:last-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .section-kicker.light,

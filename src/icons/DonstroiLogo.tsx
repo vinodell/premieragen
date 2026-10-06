@@ -1,8 +1,8 @@
 export const DonstroiLogo = () => (
   <svg
     id="Icon/Developers/Donstroy"
-    width="55"
-    height="55"
+    width="3.4375rem"
+    height="3.4375rem"
     viewBox="0 0 32 32"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

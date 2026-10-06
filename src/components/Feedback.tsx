@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { SECTION_IDS, SECTION_LABELS, TESTIMONIALS } from "../consts";
 import type { TestimonialCardProps } from "../types";
 import { SectionKicker } from "./SectionKicker";
@@ -47,6 +47,28 @@ const FeedbackCard = ({ testimonial, index, total }: TestimonialCardProps) => {
 export const Feedback = () => {
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useLayoutEffect(() => {
+    const track = trackRef.current;
+    const card = track?.children.item(activeIndex);
+    if (!track || !(card instanceof HTMLElement)) return;
+
+    const updateHeight = () => {
+      const rootFontSize = Number.parseFloat(
+        getComputedStyle(document.documentElement).fontSize,
+      );
+      track.style.setProperty(
+        "--testimonial-height",
+        `${card.getBoundingClientRect().height / rootFontSize}rem`,
+      );
+    };
+
+    updateHeight();
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, [activeIndex]);
 
   const goToSlide = (index: number) => {
     const track = trackRef.current;

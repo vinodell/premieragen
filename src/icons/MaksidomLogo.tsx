@@ -3,10 +3,10 @@ export const MaksidomLogo = () => (
     version="1.1"
     id="Слой_1"
     xmlns="http://www.w3.org/2000/svg"
-    x="0px"
-    y="0px"
-    width="55"
-    height="55"
+    x="0"
+    y="0"
+    width="3.4375rem"
+    height="3.4375rem"
     viewBox="0 0 640 215"
   >
     <style type="text/css"></style>

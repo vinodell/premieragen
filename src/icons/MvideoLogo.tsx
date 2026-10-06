@@ -3,8 +3,8 @@ export const MvideoLogo = () => (
     id="Icon/Market/MVideo"
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
-    width="55"
-    height="55"
+    width="3.4375rem"
+    height="3.4375rem"
     fill="none"
   >
     <path fill="#ff0000" d="M0 0h32v32H0z" />

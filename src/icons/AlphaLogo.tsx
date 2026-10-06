@@ -3,8 +3,8 @@ export const AlphaLogo = () => (
     id="Icon/Bank/Alfa"
     viewBox="0 0 28 28"
     xmlns="http://www.w3.org/2000/svg"
-    width="55"
-    height="55"
+    width="3.4375rem"
+    height="3.4375rem"
     fill="none"
   >
     <path fill="#EF3124" d="M0 0h28v28H0z" />

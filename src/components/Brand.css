@@ -1,8 +1,10 @@
 .brand {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    font: 500 11px/1.05 'DM Mono', monospace;
+    min-width: 0;
+    min-height: 2.75rem;
+    gap: .625rem;
+    font: 500 .6875rem/1.05 'DM Mono', monospace;
     text-transform: uppercase;
     letter-spacing: .04em;
 }
@@ -10,15 +12,22 @@
 .brand-mark-wrap {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    min-width: 0;
+    gap: .625rem;
+}
+
+.brand-mark-wrap > span:last-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .brand-mark {
     display: grid;
     place-items: center;
-    width: 29px;
-    height: 29px;
-    border: 1px solid currentColor;
+    flex-shrink: 0;
+    width: 1.8125rem;
+    height: 1.8125rem;
+    border: .0625rem solid currentColor;
     border-radius: 50%;
-    font: 700 17px/1 'Manrope', sans-serif;
+    font: 700 1.0625rem/1 'Manrope', sans-serif;
 }

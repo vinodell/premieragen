@@ -41,3 +41,4 @@ export * from "./SovcombankLogo";
 export * from "./TbankLogo";
 export * from "./TwelvestoryLogo";
 export * from "./ZdravcityLogo";
+export * from "./XfiveLogo";

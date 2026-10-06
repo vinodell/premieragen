@@ -6,16 +6,18 @@ export const Intro = () => {
   return (
     <section className="hero section-pad" aria-labelledby="hero-title">
       <div className="image-container">
-        <img src={HERO_IMAGE.src} alt={HERO_IMAGE.alt} />
-        <h1
-          className="hero-image-title"
-          id="hero-title"
-          aria-label={BRAND.name}
-        >
-          {BRAND.firstLine}
-          <br />
-          {BRAND.secondLine}
-        </h1>
+        <div className="hero-visual">
+          <img src={HERO_IMAGE.src} alt={HERO_IMAGE.alt} />
+          <h1
+            className="hero-image-title"
+            id="hero-title"
+            aria-label={BRAND.name}
+          >
+            {BRAND.firstLine}
+            <br />
+            {BRAND.secondLine}
+          </h1>
+        </div>
         <div className="hero-image-description">
           <p className="hero-image-lead">
             Мы собрали сильнейших digital-экспертов в одну команду

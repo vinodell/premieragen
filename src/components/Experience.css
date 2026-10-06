@@ -1,9 +1,8 @@
 .proof-section {
     display: grid;
-    grid-template-columns: 42% 58%;
-    padding-top: 55px;
-    padding-bottom: 55px;
-    min-height: 690px;
+    grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+    padding-block: clamp(2rem, 4vw, 3.4375rem);
+    min-height: 43.125rem;
     color: var(--ink);
     background: var(--pink);
 }
@@ -11,8 +10,7 @@
 .proof-art {
     position: relative;
     overflow: hidden;
-    min-height: 440px;
-    /* background: var(--black); */
+    min-height: 27.5rem;
     background: white;
     color: var(--ink);
 }
@@ -31,40 +29,40 @@
     position: absolute;
     right: 7%;
     top: 12%;
-    font-size: 50px;
+    font-size: 3.125rem;
 }
 
 .proof-label {
     position: absolute;
     right: 10%;
     bottom: 9%;
-    font: 11px/1.35 'DM Mono', monospace;
+    font: .6875rem/1.35 'DM Mono', monospace;
 }
 
 .proof-content {
     min-width: 0;
-    padding-top: 90px;
-    padding-bottom: 90px;
+    container-type: inline-size;
+    padding-block: clamp(3rem, 6vw, 5.625rem);
 }
 
 .proof-content h2 {
-    margin-top: 100px;
+    margin-top: clamp(2.5rem, 6.5vw, 6.25rem);
 }
 
 .proof-text {
     max-width: 58ch;
-    margin: clamp(24px, 3vw, 40px) 0 0;
-    font-size: clamp(16px, 1.4vw, 20px);
+    margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
     line-height: 1.65;
     overflow-wrap: anywhere;
 }
 
 .proof-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 44px 30px;
-    max-width: 520px;
-    margin-top: clamp(32px, 4vw, 56px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.75rem) clamp(1rem, 2vw, 1.875rem);
+    max-width: 32.5rem;
+    margin-top: clamp(2rem, 4vw, 3.5rem);
 }
 
 .proof-grid strong {
@@ -73,36 +71,68 @@
     font-size: clamp(2rem, 4vw, 4.2rem);
     line-height: 1;
     letter-spacing: -.07em;
+    overflow-wrap: anywhere;
+}
+
+@container (max-width: 21rem) {
+    .proof-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }
 
 .proof-grid span {
     display: block;
-    margin-top: 8px;
+    margin-top: .5rem;
     color: var(--ink);
-    font: 10px 'DM Mono', monospace;
+    font: .6875rem/1.5 'DM Mono', monospace;
     text-transform: uppercase;
+    overflow-wrap: anywhere;
 }
 
-@media (max-width: 800px) {
-
+@media (max-width: 50em) {
     .proof-section {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+        min-height: 0;
+        padding-bottom: 0;
     }
 
     .proof-art {
-        min-height: 300px;
+        min-height: clamp(12rem, 34vw, 18.75rem);
+    }
+
+    .proof-word {
+        left: var(--pad);
+        font-size: clamp(3.5rem, 18vw, 9rem);
+        transform: translateY(-50%);
+        letter-spacing: -.1em;
+    }
+
+    .proof-circle {
+        right: var(--pad);
+        font-size: clamp(2rem, 6vw, 3.125rem);
+    }
+
+    .proof-label {
+        right: var(--pad);
     }
 
     .proof-content {
-        padding-top: 65px;
-        padding-bottom: 75px;
+        padding-block: clamp(2.5rem, 7vw, 4.6875rem);
     }
 
     .proof-content h2 {
-        margin-top: 70px;
+        margin-top: clamp(2rem, 6vw, 4.375rem);
     }
 
     .proof-grid {
-        margin-top: 36px;
+        margin-top: 2.25rem;
+    }
+
+    .proof-grid strong {
+        font-size: clamp(2rem, 7vw, 3.5rem);
+    }
+
+    .proof-grid span {
+        font-size: .75rem;
     }
 }

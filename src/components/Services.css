@@ -1,6 +1,6 @@
 .service-section {
-    padding-top: 55px;
-    padding-bottom: 55px;
+    padding-top: 3.4375rem;
+    padding-bottom: 3.4375rem;
     background: white;
 }
 
@@ -8,34 +8,40 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    margin-top: 75px;
-    margin-bottom: 80px;
+    gap: 2rem;
+    margin-top: 4.6875rem;
+    margin-bottom: 5rem;
+}
+
+.section-heading-row h2 {
+    min-width: 0;
 }
 
 .section-heading-row p {
-    margin: 0 8vw 7px 0;
+    margin: 0 8vw .4375rem 0;
     color: var(--muted);
-    font: 11px/1.6 'DM Mono', monospace;
+    font: .6875rem/1.6 'DM Mono', monospace;
     text-transform: uppercase;
 }
 
 .service-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .9375rem;
 }
 
 .service-card {
     display: flex;
     flex-direction: column;
-    min-height: 425px;
-    padding: 24px;
+    min-width: 0;
+    min-height: 26.5625rem;
+    padding: 1.5rem;
     cursor: pointer;
     transition: transform .3s ease;
 }
 
 .service-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-.5rem);
 }
 
 .service-card.teal {
@@ -55,56 +61,61 @@
 .card-top {
     display: flex;
     justify-content: space-between;
-    font: 11px 'DM Mono', monospace;
+    font: .6875rem 'DM Mono', monospace;
 }
 
 .card-arrow {
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .service-card h3 {
-    max-width: 300px;
-    margin: auto 0 20px;
+    max-width: 18.75rem;
+    margin: auto 0 1.25rem;
     font-size: clamp(1.6rem, 3vw, 3rem);
     line-height: .95;
     letter-spacing: -.07em;
+    overflow-wrap: anywhere;
 }
 
 .service-card p {
-    max-width: 320px;
-    margin-bottom: 30px;
-    font-size: 13px;
+    max-width: 20rem;
+    margin-bottom: 1.875rem;
+    font-size: .8125rem;
     line-height: 1.5;
 }
 
 .card-line {
-    height: 1px;
+    height: .0625rem;
     background: currentColor;
     opacity: .5;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 50rem) {
 
     .service-section {
-        padding-top: 75px;
-        padding-bottom: 80px;
+        padding-top: clamp(3.4375rem, 8vw, 4.6875rem);
+        padding-bottom: clamp(3.4375rem, 9vw, 5rem);
     }
 
     .section-heading-row {
         display: block;
-        margin-top: 55px;
-        margin-bottom: 48px;
+        margin-top: clamp(2rem, 6vw, 3.4375rem);
+        margin-bottom: 3rem;
     }
 
     .section-heading-row p {
-        margin: 30px 0 0;
+        margin: 1.875rem 0 0;
     }
 
     .service-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .service-card {
-        min-height: 310px;
+        min-height: 19.375rem;
+    }
+
+    .service-card p {
+        font-size: .9375rem;
     }
 }

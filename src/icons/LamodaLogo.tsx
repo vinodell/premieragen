@@ -1,8 +1,8 @@
 export const LamodaLogo = () => (
   <svg
     id="Icon/Market/Lamoda"
-    width="55"
-    height="55"
+    width="3.4375rem"
+    height="3.4375rem"
     viewBox="0 0 151 152"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

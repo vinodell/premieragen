@@ -1,9 +1,9 @@
 export const TwelvestoryLogo = () => (
   <svg
     fill="none"
-    height="55"
+    height="3.4375rem"
     viewBox="0 0 42 42"
-    width="55"
+    width="3.4375rem"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path

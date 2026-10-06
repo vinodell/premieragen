@@ -2,11 +2,11 @@ export const DltLogo = () => (
   <svg
     version="1.1"
     id="Слой_1"
-    height="55"
-    width="55"
+    height="3.4375rem"
+    width="3.4375rem"
     xmlns="http://www.w3.org/2000/svg"
-    x="0px"
-    y="0px"
+    x="0"
+    y="0"
     viewBox="0 0 1000 1000"
     enable-background="new 0 0 1000 1000"
   >

@@ -20,7 +20,9 @@ export const ClientStrip = () => {
         <button
           className="logo-strip-toggle"
           type="button"
-          aria-label="Приостановить ленту компаний"
+          aria-label={
+            isPaused ? "Продолжить ленту компаний" : "Приостановить ленту компаний"
+          }
           aria-pressed={isPaused}
           aria-controls="client-track"
           onClick={() => setIsPaused((paused) => !paused)}

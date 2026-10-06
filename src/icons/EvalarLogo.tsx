@@ -2,8 +2,8 @@ export const EvalarLogo = () => (
   <svg
     version="1.1"
     id="svg1"
-    width="2000"
-    height="916"
+    width="125rem"
+    height="57.25rem"
     viewBox="0 0 2000 916"
     xmlns="http://www.w3.org/2000/svg"
   >

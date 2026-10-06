@@ -1,14 +1,14 @@
 .contact-section {
     position: relative;
     isolation: isolate;
-    padding-block: clamp(28px, 5svh, 56px);
+    padding-block: clamp(1.75rem, 5svh, 3.5rem);
     color: var(--blue);
     background: var(--pink);
 }
 
 .contact-head h2 {
-    margin: 28px 0;
-    font-size: clamp(3rem, 5.2vw, 5.6rem);
+    margin: 1.75rem 0;
+    font-size: clamp(2rem, 1.25rem + 4vw, 5.6rem);
 }
 
 .contact-grid {
@@ -16,7 +16,7 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     position: relative;
     align-items: center;
-    gap: clamp(32px, 6vw, 96px);
+    gap: clamp(2rem, 6vw, 6rem);
 }
 
 .contact-intro {
@@ -26,7 +26,7 @@
 .contact-lead {
     max-width: 36ch;
     margin: 0;
-    font-size: clamp(18px, 1.8vw, 26px);
+    font-size: clamp(1.125rem, 1.8vw, 1.625rem);
     line-height: 1.55;
     letter-spacing: -.025em;
 }
@@ -36,7 +36,7 @@
     inset: 0;
     z-index: -1;
     display: grid;
-    grid-template-columns: 1.1fr 1fr 1fr;
+    grid-template-columns: minmax(0, 1.1fr) repeat(2, minmax(0, 1fr));
     overflow: hidden;
     pointer-events: none;
 }
@@ -66,58 +66,62 @@
 }
 
 .contact-meta {
-    margin: 28px 0 16px;
+    margin: 1.75rem 0 1rem;
     color: var(--blue);
-    font: 11px/1.7 'DM Mono', monospace;
+    font: .8125rem/1.7 'DM Mono', monospace;
 }
 
 .contact-meta a {
-    margin-top: 16px;
+    margin-top: 1rem;
 }
 
 .contact-telegram {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 0.75rem;
+    min-height: var(--touch-target);
     max-width: 100%;
     color: var(--blue);
-    font: 12px/1.5 'DM Mono', monospace;
+    font: .875rem/1.5 'DM Mono', monospace;
 }
 
 .contact-telegram span {
+    min-width: 0;
     overflow-wrap: anywhere;
 }
 
 .contact-telegram svg {
+    width: clamp(2.5rem, 6vw, 3.4375rem);
+    height: auto;
     flex-shrink: 0;
     transition: transform .2s ease;
 }
 
 .contact-telegram:hover svg {
-    transform: translateY(-3px);
+    transform: translateY(-0.1875rem);
 }
 
 .contact-telegram:hover > span {
     text-decoration: underline;
-    text-underline-offset: 4px;
+    text-underline-offset: 0.25rem;
 }
 
 .contact-form {
     display: grid;
-    gap: 18px;
+    gap: 1.125rem;
     min-width: 0;
     width: 100%;
-    padding: clamp(24px, 2.5vw, 36px);
-    border-top: 3px solid var(--blue);
+    padding: clamp(1.5rem, 2.5vw, 2.25rem);
+    border-top: 0.1875rem solid var(--blue);
     background: #fff;
 }
 
 .contact-form label {
     display: grid;
-    gap: 8px;
+    gap: 0.5rem;
     min-width: 0;
     color: var(--blue);
-    font: 900 11px/1.5 'DM Mono', monospace;
+    font: 900 .75rem/1.5 'DM Mono', monospace;
     letter-spacing: .04em;
     text-transform: uppercase;
 }
@@ -127,13 +131,14 @@
     width: 100%;
     min-width: 0;
     max-width: 100%;
-    padding: 12px 0;
+    min-height: var(--touch-target);
+    padding: 0.75rem 0;
     border: 0;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 0.0625rem solid var(--line);
     border-radius: 0;
     color: var(--blue);
     background: transparent;
-    font: 15px/1.5 'Manrope', sans-serif;
+    font: 1rem/1.5 'Manrope', sans-serif;
     text-transform: none;
 }
 
@@ -149,8 +154,8 @@
 
 .contact-form input:focus-visible,
 .contact-form select:focus-visible {
-    outline: 2px solid var(--blue);
-    outline-offset: 4px;
+    outline: 0.125rem solid var(--blue);
+    outline-offset: 0.25rem;
 }
 
 .contact-form select {
@@ -163,17 +168,17 @@
 }
 
 .contact-form input[type="datetime-local"] {
-    min-height: 48px;
+    min-height: 3rem;
     color-scheme: light;
 }
 
 .contact-form button {
     width: 100%;
-    margin-top: 4px;
-    padding: 20px;
+    margin-top: 0.25rem;
+    padding: 1.25rem;
     color: #fff;
     background: var(--blue);
-    border: 1px solid var(--blue);
+    border: 0.0625rem solid var(--blue);
 }
 
 .contact-form button:hover:not(:disabled) {
@@ -191,28 +196,32 @@
 .contact-form-hint {
     margin: 0;
     color: var(--blue);
-    font-size: 13px;
+    font-size: 0.8125rem;
     line-height: 1.5;
 }
 
 .contact-form-hint {
-    margin-top: -6px;
-    font-size: 11px;
+    margin-top: -0.375rem;
+    font-size: .75rem;
 }
 
 .contact-form-message:empty {
     display: none;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 50em) {
     .contact-grid {
         grid-template-columns: minmax(0, 1fr);
-        gap: 36px;
+        gap: 2.25rem;
         margin-top: 0;
     }
 
     .contact-head h2 {
-        margin-top: 32px;
+        margin-top: 2rem;
+    }
+
+    .contact-form {
+        padding: clamp(1rem, 4vw, 1.5rem);
     }
 
     .contact-gallery {

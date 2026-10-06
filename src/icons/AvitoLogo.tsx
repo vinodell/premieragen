@@ -3,8 +3,8 @@ export const AvitoLogo = () => (
     id="Icon/Market/Avito"
     viewBox="0 0 41 41"
     xmlns="http://www.w3.org/2000/svg"
-    width="55"
-    height="55"
+    width="3.4375rem"
+    height="3.4375rem"
     fill="none"
   >
     <path fill="#ffffff" d="M0 0h41v41H0z" />

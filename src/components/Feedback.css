@@ -1,6 +1,5 @@
 .testimonials {
-    padding-top: clamp(80px, 9vw, 55px);
-    padding-bottom: clamp(70px, 7vw, 55px);
+    padding-block: var(--section-space);
     background: var(--pink);
 }
 
@@ -8,52 +7,54 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 40px;
-    margin: 65px 0 55px;
+    gap: 2.5rem;
+    margin: 4.0625rem 0 3.4375rem;
 }
 
 .testimonials-heading h2 {
-    font-size: clamp(2.8rem, 6.3vw, 7rem);
+    font-size: clamp(2.125rem, 1.125rem + 5.5vw, 7rem);
 }
 
 .testimonials-heading>p {
-    max-width: 270px;
+    max-width: 16.875rem;
     margin: 0;
-    font: 12px/1.6 'DM Mono', monospace;
+    font: 0.75rem/1.6 'DM Mono', monospace;
 }
 
 .testimonials-toolbar,
 .testimonials-controls {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
-    gap: 12px;
+    gap: 0.75rem;
 }
 
 .testimonials-toolbar {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 .testimonials-counter {
-    font: 10px/1.5 'DM Mono', monospace;
+    font: 0.625rem/1.5 'DM Mono', monospace;
     text-transform: uppercase;
     letter-spacing: .04em;
 }
 
 .testimonials-counter {
-    margin-right: 15px;
+    margin-right: 0.9375rem;
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
 }
 
 .testimonials-controls button {
-    width: 46px;
-    height: 46px;
-    border: 1px solid currentColor;
+    flex-shrink: 0;
+    width: 2.875rem;
+    height: 2.875rem;
+    border: 0.0625rem solid currentColor;
     border-radius: 50%;
     background: transparent;
     color: var(--ink);
-    font-size: 24px;
+    font-size: 1.5rem;
     cursor: pointer;
     transition: color .2s, background .2s;
 }
@@ -70,14 +71,16 @@
 
 .testimonials-track {
     display: flex;
-    height: min(640px, 75svh);
+    min-width: 0;
+    max-width: 100%;
+    height: min(40rem, 75svh);
     overflow-y: hidden;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: none;
     overscroll-behavior-x: contain;
-    border-radius: 4px;
+    border-radius: 0.25rem;
 }
 
 .testimonials-track::-webkit-scrollbar {
@@ -85,8 +88,8 @@
 }
 
 .testimonials-track:focus-visible {
-    outline: 2px solid var(--ink);
-    outline-offset: 6px;
+    outline: 0.125rem solid var(--ink);
+    outline-offset: 0.375rem;
 }
 
 .testimonial-card {
@@ -95,36 +98,41 @@
     flex: 0 0 100%;
     min-width: 0;
     height: 100%;
-    padding: clamp(24px, 3.5vw, 56px);
+    padding: clamp(1.5rem, 3.5vw, 3.5rem);
     overflow: hidden;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     color: var(--pink);
     background: var(--blue);
-    border-top: 3px solid var(--teal);
+    border-top: 0.1875rem solid var(--teal);
 }
 
 .testimonial-context {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
     align-items: start;
-    gap: clamp(20px, 4vw, 64px);
-    padding-bottom: clamp(20px, 3vw, 36px);
-    border-bottom: 1px solid rgba(209, 176, 179, .3);
+    gap: clamp(1.25rem, 4vw, 4rem);
+    padding-bottom: clamp(1.25rem, 3vw, 2.25rem);
+    border-bottom: 0.0625rem solid rgba(209, 176, 179, .3);
+}
+
+.testimonial-context > div {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .testimonial-label {
     display: block;
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem;
     color: var(--teal);
-    font: 10px/1.5 'DM Mono', monospace;
+    font: 0.625rem/1.5 'DM Mono', monospace;
     letter-spacing: .08em;
     text-transform: uppercase;
 }
 
 .testimonial-industry h3 {
-    margin: 0 0 8px;
-    font-size: clamp(20px, 2.2vw, 32px);
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.25rem, 2.2vw, 2rem);
     font-weight: 500;
     line-height: 1.2;
     letter-spacing: -.035em;
@@ -133,20 +141,20 @@
 
 .testimonial-industry p {
     margin: 0;
-    font-size: 13px;
+    font-size: 0.8125rem;
     line-height: 1.6;
 }
 
 .testimonial-direction p {
     max-width: 36ch;
     margin: 0;
-    font-size: clamp(14px, 1.4vw, 19px);
+    font-size: clamp(0.875rem, 1.4vw, 1.1875rem);
     line-height: 1.5;
 }
 
 .testimonial-number {
     color: var(--teal);
-    font: 400 clamp(28px, 4vw, 56px)/1 'Manrope', sans-serif;
+    font: 400 clamp(1.75rem, 4vw, 3.5rem)/1 'Manrope', sans-serif;
     letter-spacing: -.06em;
     font-variant-numeric: tabular-nums;
 }
@@ -154,35 +162,36 @@
 .testimonial-story {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
-    gap: clamp(16px, 3vw, 44px);
+    gap: clamp(1rem, 3vw, 2.75rem);
     min-height: 0;
-    padding-top: clamp(24px, 3vw, 40px);
+    padding-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .testimonial-quote-mark {
     color: var(--teal);
-    font: clamp(64px, 8vw, 112px)/.85 Georgia, serif;
+    font: clamp(4rem, 8vw, 7rem)/.85 Georgia, serif;
 }
 
 .testimonial-quote-scroll {
+    min-width: 0;
     min-height: 0;
     overflow-y: auto;
-    padding-right: clamp(12px, 2vw, 28px);
+    padding-right: clamp(0.75rem, 2vw, 1.75rem);
     scrollbar-width: thin;
     scrollbar-color: var(--teal) var(--blue);
     scrollbar-gutter: stable;
 }
 
 .testimonial-quote-scroll:focus-visible {
-    outline: 2px solid var(--teal);
-    outline-offset: -2px;
+    outline: 0.125rem solid var(--teal);
+    outline-offset: -0.125rem;
 }
 
 .testimonial-quote-scroll blockquote {
     max-width: 64ch;
     margin: 0;
-    padding-bottom: 8px;
-    font-size: clamp(18px, 1.85vw, 28px);
+    padding-bottom: 0.5rem;
+    font-size: clamp(1.125rem, 1.85vw, 1.75rem);
     font-weight: 400;
     line-height: 1.65;
     letter-spacing: -.02em;
@@ -192,15 +201,16 @@
 
 .testimonials-pagination {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 1.25rem;
 }
 
 .testimonials-pagination button {
     display: grid;
     place-items: center;
-    width: 44px;
-    height: 44px;
+    width: 2.75rem;
+    height: 2.75rem;
     padding: 0;
     border: 0;
     background: transparent;
@@ -209,33 +219,33 @@
 }
 
 .testimonials-pagination span {
-    width: 7px;
-    height: 7px;
-    border: 1px solid currentColor;
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border: 0.0625rem solid currentColor;
     border-radius: 50%;
     transition: width .2s;
 }
 
 .testimonials-pagination [aria-current="true"] span {
-    width: 26px;
-    border-radius: 8px;
+    width: 1.625rem;
+    border-radius: 0.5rem;
     background: currentColor;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 50em) {
     .testimonials-heading {
         display: block;
-        margin: 45px 0 35px;
+        margin: 2.8125rem 0 2.1875rem;
     }
 
     .testimonials-heading>p {
-        margin-top: 25px;
+        margin-top: 1.5625rem;
     }
 
     .testimonial-context {
         grid-template-columns: minmax(0, 1fr) auto;
-        gap: 16px;
-        padding-bottom: 20px;
+        gap: 1rem;
+        padding-bottom: 1.25rem;
     }
 
     .testimonial-direction {
@@ -249,13 +259,25 @@
     }
 
     .testimonial-label {
-        margin-bottom: 6px;
-        font-size: 9px;
+        margin-bottom: 0.375rem;
+        font-size: .6875rem;
+    }
+
+    .testimonials-track {
+        height: var(--testimonial-height, auto);
+        align-items: flex-start;
+    }
+
+    .testimonial-card {
+        height: auto;
+        grid-template-rows: auto auto;
+        align-content: start;
+        padding: clamp(1rem, 4vw, 1.5rem);
     }
 
     .testimonial-story {
         grid-template-columns: minmax(0, 1fr);
-        padding-top: 20px;
+        padding-top: 1.25rem;
     }
 
     .testimonial-quote-mark {
@@ -266,6 +288,12 @@
         margin-right: 0;
     }
 
+    .testimonial-quote-scroll {
+        overflow-y: visible;
+        padding-right: 0;
+        scrollbar-gutter: auto;
+    }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -274,15 +302,15 @@
     }
 }
 
-@media (max-height: 600px) and (orientation: landscape) {
+@media (min-width: 50.0625em) and (max-height: 37.5em) and (orientation: landscape) {
     .testimonial-card {
-        padding: 16px 24px;
+        padding: 1rem 1.5rem;
     }
 
     .testimonial-context {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
-        gap: 16px;
-        padding-bottom: 12px;
+        gap: 1rem;
+        padding-bottom: 0.75rem;
     }
 
     .testimonial-direction,
@@ -292,10 +320,10 @@
     }
 
     .testimonial-label {
-        margin-bottom: 4px;
+        margin-bottom: 0.25rem;
     }
 
     .testimonial-story {
-        padding-top: 12px;
+        padding-top: 0.75rem;
     }
 }
