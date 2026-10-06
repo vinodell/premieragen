@@ -185,6 +185,9 @@ export const SERVICES: readonly Service[] = [
   },
 ];
 
+// Ключ Web3Forms должен быть выпущен для адреса CONTACT_EMAIL.
+export const WEB_3_API_ACCESS_KEY = "9f101256-0d34-480c-82a5-c11a314fe841";
+
 export const PROOF_STATS: readonly ProofStat[] = [
   { value: "10+", label: "лет в маркетинге" },
   { value: "15 млрд ₽", label: "рекламных бюджетов" },
