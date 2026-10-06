@@ -16,10 +16,12 @@ const payload = {
 };
 const originalFetch = global.fetch;
 const fetchMock = jest.fn();
+let warningSpy: jest.SpyInstance;
 
 const apiResponse = (body: unknown, status = 200): Response =>
   ({
     ok: status >= 200 && status < 300,
+    status,
     json: jest.fn().mockResolvedValue(body),
   }) as unknown as Response;
 
@@ -53,12 +55,14 @@ beforeEach(() => {
   jest.useFakeTimers();
   fetchMock.mockReset();
   global.fetch = fetchMock;
+  warningSpy = jest.spyOn(console, "warn").mockImplementation(() => {});
 });
 
 afterEach(() => {
   jest.clearAllTimers();
   jest.useRealTimers();
   global.fetch = originalFetch;
+  warningSpy.mockRestore();
 });
 
 describe("sendData", () => {
@@ -99,10 +103,9 @@ describe("sendData", () => {
 
     const email = requestOptions(emailUrl);
     expect(email.method).toBe("POST");
-    expect(email.headers).toEqual(
-      expect.objectContaining({ "Content-Type": "application/json" }),
-    );
-    const body = JSON.parse(String(email.body));
+    expect(email).not.toHaveProperty("headers");
+    expect(email.body).toBeInstanceOf(FormData);
+    const body = Object.fromEntries((email.body as FormData).entries());
     expect(body).toMatchObject({
       ...payload,
       access_key: "test-web3-key",
@@ -181,6 +184,170 @@ describe("sendData", () => {
 
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(jest.getTimerCount()).toBe(0);
+    expect(warningSpy).toHaveBeenCalledWith(
+      expect.stringContaining("Telegram"),
+      expect.stringContaining("Network unavailable"),
+    );
+    expect(warningSpy).toHaveBeenCalledWith(
+      expect.stringContaining("Web3Forms"),
+      expect.stringContaining("Network unavailable"),
+    );
+  });
+
+  it.each([
+    [
+      403,
+      { success: false, message: "Access key is invalid." },
+      "HTTP 403",
+      "Access key is invalid.",
+    ],
+    [
+      422,
+      { success: false, body: { message: "Email field is invalid." } },
+      "HTTP 422",
+      "Email field is invalid.",
+    ],
+    [
+      200,
+      { success: false, message: "This domain is not allowed." },
+      "",
+      "This domain is not allowed.",
+    ],
+    [
+      200,
+      { success: false, error: "Submission was rejected by the provider." },
+      "",
+      "Submission was rejected by the provider.",
+    ],
+  ])(
+    "preserves the email provider detail at HTTP %s while Telegram success resolves",
+    async (status, body, expectedStatus, expectedDetail) => {
+      fetchMock
+        .mockResolvedValueOnce(apiResponse({ success: true }))
+        .mockResolvedValueOnce(apiResponse(body, status));
+
+      await expect(sendData(payload)).resolves.toBeUndefined();
+
+      expect(warningSpy).toHaveBeenCalledTimes(1);
+      expect(warningSpy).toHaveBeenCalledWith(
+        expect.stringContaining("Web3Forms"),
+        expect.stringContaining(expectedDetail),
+      );
+      expect(String(warningSpy.mock.calls[0][1])).toContain(expectedStatus);
+      expect(jest.getTimerCount()).toBe(0);
+    },
+  );
+
+  it("logs the HTTP status when the rejected email response is not JSON", async () => {
+    fetchMock
+      .mockResolvedValueOnce(apiResponse({ success: true }))
+      .mockResolvedValueOnce({
+        ok: false,
+        status: 500,
+        json: jest
+          .fn()
+          .mockRejectedValue(new SyntaxError("Unexpected token <")),
+      } as unknown as Response);
+
+    await expect(sendData(payload)).resolves.toBeUndefined();
+
+    expect(warningSpy).toHaveBeenCalledWith(
+      expect.stringContaining("Web3Forms"),
+      expect.stringContaining("HTTP 500"),
+    );
+  });
+
+  it("logs a malformed successful email response without changing Telegram success", async () => {
+    fetchMock
+      .mockResolvedValueOnce(apiResponse({ success: true }))
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: jest.fn().mockRejectedValue(new SyntaxError("Invalid JSON")),
+      } as unknown as Response);
+
+    await expect(sendData(payload)).resolves.toBeUndefined();
+
+    expect(warningSpy).toHaveBeenCalledTimes(1);
+    expect(warningSpy.mock.calls[0][0]).toContain("Web3Forms");
+    expect(warningSpy.mock.calls[0][1]).toEqual(expect.any(String));
+    expect(String(warningSpy.mock.calls[0][1]).length).toBeGreaterThan(0);
+  });
+
+  it("redacts every access key occurrence and excludes returned form data from diagnostics", async () => {
+    fetchMock
+      .mockResolvedValueOnce(apiResponse({ success: true }))
+      .mockResolvedValueOnce(
+        apiResponse(
+          {
+            success: false,
+            message: "Access key test-web3-key is invalid: test-web3-key",
+            data: { ...payload, access_key: "test-web3-key" },
+          },
+          403,
+        ),
+      );
+
+    await expect(sendData(payload)).resolves.toBeUndefined();
+
+    const warning = warningSpy.mock.calls.flat().join(" ");
+    expect(warning).toContain("Access key");
+    expect(warning).not.toContain("test-web3-key");
+    Object.values(payload).forEach((value) => {
+      expect(warning).not.toContain(value);
+    });
+  });
+
+  it("does not turn a returned data object into an error message", async () => {
+    fetchMock
+      .mockResolvedValueOnce(apiResponse({ success: true }))
+      .mockResolvedValueOnce(
+        apiResponse({ success: false, data: payload }, 422),
+      );
+
+    await expect(sendData(payload)).resolves.toBeUndefined();
+
+    const warning = warningSpy.mock.calls.flat().join(" ");
+    expect(warning).toContain("HTTP 422");
+    Object.values(payload).forEach((value) => {
+      expect(warning).not.toContain(value);
+    });
+  });
+
+  it("redacts the access key from a rejected network error", async () => {
+    fetchMock
+      .mockResolvedValueOnce(apiResponse({ success: true }))
+      .mockRejectedValueOnce(
+        new Error("Request test-web3-key failed for test-web3-key"),
+      );
+
+    await expect(sendData(payload)).resolves.toBeUndefined();
+
+    expect(warningSpy).toHaveBeenCalledTimes(1);
+    const warning = warningSpy.mock.calls.flat().join(" ");
+    expect(warning).toContain("Web3Forms");
+    expect(warning).toContain("Request");
+    expect(warning).not.toContain("test-web3-key");
+  });
+
+  it("bounds provider diagnostics to 512 characters", async () => {
+    fetchMock
+      .mockResolvedValueOnce(apiResponse({ success: true }))
+      .mockResolvedValueOnce(
+        apiResponse({ success: false, message: "x".repeat(2000) }, 403),
+      );
+
+    await expect(sendData(payload)).resolves.toBeUndefined();
+
+    expect(String(warningSpy.mock.calls[0][1]).length).toBeLessThanOrEqual(512);
+  });
+
+  it("does not log errors when both providers confirm success", async () => {
+    fetchMock.mockResolvedValue(apiResponse({ success: true }));
+
+    await expect(sendData(payload)).resolves.toBeUndefined();
+
+    expect(warningSpy).not.toHaveBeenCalled();
   });
 
   it.each([
@@ -197,6 +364,7 @@ describe("sendData", () => {
       () =>
         ({
           ok: true,
+          status: 200,
           json: jest.fn().mockRejectedValue(new SyntaxError("Invalid JSON")),
         }) as unknown as Response,
     ],
