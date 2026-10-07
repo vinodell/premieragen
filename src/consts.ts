@@ -33,14 +33,14 @@ export const SECTION_LABELS = {
 } as const;
 
 export const HERO_IMAGE = {
-  src: `${process.env.PUBLIC_URL || ""}/hero.jpg`,
-  srcSet: [640, 960, 1179]
+  src: `${process.env.PUBLIC_URL || ""}/hero.png`,
+  srcSet: [640, 960, 1171]
     .map(
       (width) => `${process.env.PUBLIC_URL || ""}/hero-${width}.webp ${width}w`,
     )
     .join(", "),
-  width: 1179,
-  height: 1334,
+  width: 1171,
+  height: 1343,
   alt: "Катя - основатель Premier Agency",
 } as const;
 
