@@ -2,7 +2,14 @@ import { render, screen } from "@testing-library/react";
 import { App } from "./App";
 import { PERSONAL_DATA_OPERATOR } from "./consts";
 
-afterEach(() => window.history.replaceState(null, "", "/"));
+beforeEach(() => {
+  jest.spyOn(window, "scrollTo").mockImplementation(() => {});
+});
+
+afterEach(() => {
+  window.history.replaceState(null, "", "/");
+  jest.restoreAllMocks();
+});
 
 test("renders the growth agency landing page", () => {
   render(<App />);

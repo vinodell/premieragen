@@ -25,3 +25,9 @@ svg {
 code {
   font-family: 'DM Mono', monospace;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

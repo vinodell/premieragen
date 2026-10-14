@@ -36,6 +36,18 @@ export const App = () => {
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
+  useEffect(() => {
+    if (personalDataDocument) {
+      window.scrollTo({ top: 0 });
+      return;
+    }
+
+    const targetId = window.location.hash.slice(1);
+    if (targetId) {
+      document.getElementById(targetId)?.scrollIntoView({ block: "start" });
+    }
+  }, [personalDataDocument]);
+
   if (personalDataDocument) {
     return <PersonalDataDocument kind={personalDataDocument} />;
   }

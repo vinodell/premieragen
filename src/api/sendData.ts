@@ -1,25 +1,64 @@
-import type { NewClientPayload } from "../consts";
+import {
+  telegramApi,
+  WEB_3_API_ACCESS_KEY,
+  type NewClientPayload,
+} from "../consts";
 
-export const sendData = async (payload: NewClientPayload): Promise<void> => {
-  if (payload.consent?.accepted !== true) {
-    throw new Error("Необходимо согласие на обработку персональных данных.");
+const sanitizeDiagnostic = (message: string): string => {
+  const safeMessage = WEB_3_API_ACCESS_KEY
+    ? message.split(WEB_3_API_ACCESS_KEY).join("[REDACTED]")
+    : message;
+  return safeMessage.trim().slice(0, 512);
+};
+
+const getServiceMessage = (result: unknown): string | undefined => {
+  if (typeof result !== "object" || result === null) return;
+
+  let message: unknown;
+  if ("message" in result && typeof result.message === "string") {
+    message = result.message;
+  } else if (
+    "body" in result &&
+    typeof result.body === "object" &&
+    result.body !== null &&
+    "message" in result.body
+  ) {
+    message = result.body.message;
+  } else if ("error" in result) {
+    message = result.error;
   }
 
+  if (typeof message !== "string" || !message.trim()) return;
+  return sanitizeDiagnostic(message);
+};
+
+const postSubmission = async (
+  url: string,
+  body: string | FormData,
+): Promise<void> => {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 15000);
 
   try {
-    const response = await fetch("/api/requests", {
+    const response = await fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      credentials: "same-origin",
-      body: JSON.stringify(payload),
+      ...(typeof body === "string"
+        ? {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          }
+        : {}),
+      body,
       signal: controller.signal,
     });
-    const result: unknown = await response.json();
+    let result: unknown;
+    try {
+      result = await response.json();
+    } catch {
+      throw new Error(`HTTP ${response.status}: некорректный ответ сервера.`);
+    }
     if (
       !response.ok ||
       typeof result !== "object" ||
@@ -27,7 +66,9 @@ export const sendData = async (payload: NewClientPayload): Promise<void> => {
       !("success" in result) ||
       result.success !== true
     ) {
-      throw new Error("Сервер не подтвердил получение заявки.");
+      const message =
+        getServiceMessage(result) ?? "Сервис не подтвердил отправку.";
+      throw new Error(`HTTP ${response.status}: ${message}`);
     }
   } finally {
     clearTimeout(timeout);

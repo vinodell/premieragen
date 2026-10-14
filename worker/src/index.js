@@ -1,4 +1,4 @@
-const CONSENT_VERSION = '2026-10-14.2';
+import { PERSONAL_DATA_CONSENT_VERSION as CONSENT_VERSION } from '../../src/consent.ts';
 
 const getCorsHeaders = (request) => {
 	const origin = request.headers.get('Origin');
@@ -28,7 +28,7 @@ const isAllowedOrigin = (origin) => {
 		return true;
 	}
 
-	return /^http:\/\/localhost:\d+$/.test(origin);
+	return /^http:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origin);
 };
 
 export const worker = {
@@ -87,8 +87,7 @@ export const worker = {
 		const { consent } = payload;
 		if (
 			consent !== undefined &&
-			(
-				!consent ||
+			(!consent ||
 				typeof consent !== 'object' ||
 				Array.isArray(consent) ||
 				consent.accepted !== true ||
@@ -96,8 +95,7 @@ export const worker = {
 				typeof consent.acceptedAt !== 'string' ||
 				!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(consent.acceptedAt) ||
 				!Number.isFinite(Date.parse(consent.acceptedAt)) ||
-				new Date(consent.acceptedAt).toISOString() !== consent.acceptedAt
-			)
+				new Date(consent.acceptedAt).toISOString() !== consent.acceptedAt)
 		) {
 			return jsonResponse({ success: false, error: 'Invalid consent evidence' }, 400, corsHeaders);
 		}
@@ -117,12 +115,14 @@ export const worker = {
 					dateStyle: 'medium',
 					timeStyle: 'short',
 				}).format(new Date(date))}`,
-				...(consent ? [
-					'',
-					'✅ Согласие на обработку персональных данных: дано',
-					`Время согласия (UTC): ${consent.acceptedAt}`,
-					`Версия согласия: ${consent.version}`,
-				] : []),
+				...(consent
+					? [
+							'',
+							'✅ Согласие на обработку персональных данных: дано',
+							`Время согласия (UTC): ${consent.acceptedAt}`,
+							`Версия согласия: ${consent.version}`,
+						]
+					: []),
 			].join('\n');
 			const telegramResponse = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
 				method: 'POST',

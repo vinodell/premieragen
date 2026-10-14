@@ -22,6 +22,7 @@ const payload: NewClientPayload = {
 };
 const originalFetch = global.fetch;
 const fetchMock = jest.fn();
+let warningSpy: jest.SpyInstance;
 
 const apiResponse = (body: unknown, status = 200): Response =>
   ({
@@ -30,16 +31,44 @@ const apiResponse = (body: unknown, status = 200): Response =>
     json: jest.fn().mockResolvedValue(body),
   }) as unknown as Response;
 
+const requestOptions = (url: string): RequestInit =>
+  fetchMock.mock.calls.find(([input]) => String(input) === url)![1];
+
+const deferredResponse = () => {
+  let resolve!: (response: Response) => void;
+  const promise = new Promise<Response>((fulfill) => {
+    resolve = fulfill;
+  });
+  return { promise, resolve };
+};
+
+const rejectOnAbort = (_input: RequestInfo | URL, options?: RequestInit) =>
+  new Promise<Response>((_resolve, reject) => {
+    options?.signal?.addEventListener(
+      "abort",
+      () => reject(new DOMException("Request aborted", "AbortError")),
+      { once: true },
+    );
+  });
+
+const flushPromises = async () => {
+  for (let turn = 0; turn < 10; turn += 1) {
+    await Promise.resolve();
+  }
+};
+
 beforeEach(() => {
   jest.useFakeTimers();
   fetchMock.mockReset();
   global.fetch = fetchMock;
+  warningSpy = jest.spyOn(console, "warn").mockImplementation(() => {});
 });
 
 afterEach(() => {
   jest.clearAllTimers();
   jest.useRealTimers();
   global.fetch = originalFetch;
+  warningSpy.mockRestore();
 });
 
 describe("sendData", () => {
@@ -427,59 +456,4 @@ describe("sendData", () => {
       expect(jest.getTimerCount()).toBe(0);
     },
   );
-  expect(jest.getTimerCount()).toBe(0);
-});
-
-test("does not send a request if consent is missing", async () => {
-  const invalidPayload = { ...payload, consent: undefined };
-  await expect(
-    sendData(invalidPayload as unknown as NewClientPayload),
-  ).rejects.toThrow(/согласие/);
-  expect(fetchMock).not.toHaveBeenCalled();
-});
-
-test.each([
-  ["HTTP failure", { success: true }, 503],
-  ["rejected request", { success: false }, 200],
-  ["missing confirmation", {}, 200],
-  ["null JSON", null, 200],
-  ["invalid success value", { success: "true" }, 200],
-])("does not report success for %s", async (_label, body, status) => {
-  fetchMock.mockResolvedValue(apiResponse(body, status));
-  await expect(sendData(payload)).rejects.toThrow();
-  expect(jest.getTimerCount()).toBe(0);
-});
-
-test("rejects HTML fallback or a malformed server response", async () => {
-  fetchMock.mockResolvedValue({
-    ok: true,
-    json: jest.fn().mockRejectedValue(new SyntaxError("Unexpected token <")),
-  });
-  await expect(sendData(payload)).rejects.toThrow();
-  expect(jest.getTimerCount()).toBe(0);
-});
-
-test("rejects network errors and clears the timeout", async () => {
-  fetchMock.mockRejectedValue(new Error("Network unavailable"));
-  await expect(sendData(payload)).rejects.toThrow();
-  expect(jest.getTimerCount()).toBe(0);
-});
-
-test("aborts a hanging request after 15 seconds", async () => {
-  fetchMock.mockImplementation(
-    (_input, options: RequestInit) =>
-      new Promise((_resolve, reject) => {
-        options.signal?.addEventListener("abort", () =>
-          reject(new Error("Aborted")),
-        );
-      }),
-  );
-  const result = sendData(payload);
-  const signal = (fetchMock.mock.calls[0][1] as RequestInit).signal;
-  jest.advanceTimersByTime(14999);
-  expect(signal?.aborted).toBe(false);
-  jest.advanceTimersByTime(1);
-  await expect(result).rejects.toThrow();
-  expect(signal?.aborted).toBe(true);
-  expect(jest.getTimerCount()).toBe(0);
 });

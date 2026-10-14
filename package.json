@@ -2,7 +2,6 @@
   "name": "premier",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://127.0.0.1:3001",
   "homepage": "https://vinodell.github.io/premieragen",
   "dependencies": {
     "@testing-library/dom": "^10.4.2",
@@ -15,15 +14,14 @@
   },
   "scripts": {
     "dev": "react-scripts start",
-    "server": "node server/index.mjs",
-    "test:server": "node --test server/*.test.mjs",
     "build": "react-scripts build",
+    "build:cloudflare": "PUBLIC_URL=/ react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx --max-warnings=0",
-    "deploy": "npm run build && wrangler deploy",
-    "preview": "npm run build && wrangler dev",
+    "deploy": "npm run build:cloudflare && wrangler deploy",
+    "preview": "npm run build:cloudflare && wrangler dev",
     "format": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "eslintConfig": {

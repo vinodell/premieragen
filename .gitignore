@@ -8,9 +8,6 @@
 # testing
 /coverage
 
-# Private contact requests
-/server/data/
-
 # production
 /build
 

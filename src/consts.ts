@@ -288,6 +288,9 @@ export const SERVICES: readonly Service[] = [
   },
 ];
 
+// Ключ Web3Forms должен быть выпущен для адреса CONTACT_EMAIL.
+export const WEB_3_API_ACCESS_KEY = "9f101256-0d34-480c-82a5-c11a314fe841";
+
 export const PROOF_STATS: readonly ProofStat[] = [
   { value: "10+", label: "лет в маркетинге" },
   { value: "15 млрд ₽", label: "рекламных бюджетов" },
@@ -305,7 +308,7 @@ export const PERSONAL_DATA_OPERATOR = {
   email: CONTACT_EMAIL,
 } as const;
 
-export const PERSONAL_DATA_CONSENT_VERSION = "2026-10-14";
+export { PERSONAL_DATA_CONSENT_VERSION } from "./consent";
 export const PERSONAL_DATA_RETENTION_DAYS = 90;
 export const PERSONAL_DATA_DOCUMENT_URLS = {
   consent: `${process.env.PUBLIC_URL || ""}/#personal-data-consent`,
@@ -490,6 +493,8 @@ export const SERVICE_DIAGRAM_CONNECTIONS: readonly ServiceDiagramConnection[] =
     { group: 4, paths: ["M 51 453 V 519 H 238"] },
     { group: 5, paths: ["M 289 102 V 402 H 357"] },
   ];
+
+export const telegramApi = "https://premier.max-khamitov.workers.dev/";
 
 export interface NewClientPayload {
   readonly name: string;
