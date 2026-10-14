@@ -8,6 +8,8 @@ import {
   CONTACT_REQUEST_OPTIONS,
   SECTION_IDS,
   SECTION_LABELS,
+  PERSONAL_DATA_CONSENT_VERSION,
+  PERSONAL_DATA_DOCUMENT_URLS,
 } from "../consts";
 import { SectionKicker } from "./SectionKicker";
 
@@ -53,6 +55,11 @@ export const Contact = () => {
         email,
         feature,
         date: new Date(date).toISOString(),
+        consent: {
+          accepted: true,
+          acceptedAt: new Date().toISOString(),
+          version: PERSONAL_DATA_CONSENT_VERSION,
+        },
       });
       form.reset();
       setStatus("success");
@@ -176,6 +183,36 @@ export const Contact = () => {
           <p className="contact-form-hint" id="appointment-hint">
             Время звонка - в вашем часовом поясе.
           </p>
+          <label className="contact-consent">
+            <input
+              type="checkbox"
+              name="personalDataConsent"
+              required
+              disabled={status === "sending"}
+            />
+            <span>
+              Даю{" "}
+              <a
+                href={PERSONAL_DATA_DOCUMENT_URLS.consent}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                согласие на обработку персональных данных
+                <span className="visually-hidden"> (в новой вкладке)</span>
+              </a>{" "}
+              для рассмотрения заявки и связи со мной.
+            </span>
+          </label>
+          <p className="contact-form-hint contact-privacy-link">
+            <a
+              href={PERSONAL_DATA_DOCUMENT_URLS.policy}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Политика обработки персональных данных
+              <span className="visually-hidden"> (в новой вкладке)</span>
+            </a>
+          </p>
           <button
             className="button button-dark"
             type="submit"
@@ -188,7 +225,7 @@ export const Contact = () => {
             {status === "success" &&
               "Заявка отправлена! Скоро свяжемся с вами."}
             {status === "error" &&
-              "Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в Telegram."}
+              "Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь с нами по указанному email."}
           </p>
         </form>
       </div>

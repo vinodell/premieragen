@@ -1,7 +1,11 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { Contact } from "./Contact";
 import { sendData } from "../api";
-import { CONTACT_REQUEST_OPTIONS } from "../consts";
+import {
+  CONTACT_REQUEST_OPTIONS,
+  PERSONAL_DATA_CONSENT_VERSION,
+  PERSONAL_DATA_DOCUMENT_URLS,
+} from "../consts";
 
 jest.mock("../api", () => ({ sendData: jest.fn() }));
 const sendMock = sendData as jest.MockedFunction<typeof sendData>;
@@ -19,6 +23,7 @@ const fillForm = () => {
   fireEvent.change(screen.getByLabelText("Удобная дата и время звонка"), {
     target: { value: "2099-01-01T12:00" },
   });
+  fireEvent.click(screen.getByRole("checkbox"));
 };
 
 beforeEach(() => sendMock.mockReset());
@@ -34,8 +39,14 @@ test("validates and sends the form, shows success and resets fields", async () =
     email: "kate@example.com",
     feature: CONTACT_REQUEST_OPTIONS[0],
     date: new Date("2099-01-01T12:00").toISOString(),
+    consent: {
+      accepted: true,
+      acceptedAt: expect.any(String),
+      version: PERSONAL_DATA_CONSENT_VERSION,
+    },
   });
   expect(screen.getByLabelText("Ваше имя")).toHaveValue("");
+  expect(screen.getByRole("checkbox")).not.toBeChecked();
 });
 
 test("blocks repeated clicks while sending and preserves fields on error", async () => {
@@ -58,6 +69,7 @@ test("blocks repeated clicks while sending and preserves fields on error", async
     await screen.findByText(/Не удалось отправить заявку/),
   ).toBeInTheDocument();
   expect(screen.getByLabelText("Ваше имя")).toHaveValue(" Катя ");
+  expect(screen.getByRole("checkbox")).toBeChecked();
   await waitFor(() =>
     expect(
       screen.getByRole("button", { name: /Отправить запрос/ }),
@@ -74,6 +86,28 @@ test("rejects a whitespace-only name", () => {
   fireEvent.click(screen.getByRole("button", { name: /Отправить запрос/ }));
   expect(screen.getByLabelText("Ваше имя")).toBeInvalid();
   expect(sendMock).not.toHaveBeenCalled();
+});
+
+test("requires separate consent even on direct form submission", () => {
+  render(<Contact />);
+  const checkbox = screen.getByRole("checkbox");
+  expect(checkbox).not.toBeChecked();
+  expect(checkbox).toBeRequired();
+  fillForm();
+  fireEvent.click(checkbox);
+  fireEvent.submit(screen.getByLabelText("Ваше имя"));
+  expect(checkbox).toBeInvalid();
+  expect(sendMock).not.toHaveBeenCalled();
+  expect(
+    screen.getByRole("link", {
+      name: /согласие на обработку персональных данных/,
+    }),
+  ).toHaveAttribute("href", PERSONAL_DATA_DOCUMENT_URLS.consent);
+  expect(
+    screen.getByRole("link", {
+      name: /Политика обработки персональных данных/,
+    }),
+  ).toHaveAttribute("href", PERSONAL_DATA_DOCUMENT_URLS.policy);
 });
 
 test("rejects a past appointment even on direct form submission", () => {

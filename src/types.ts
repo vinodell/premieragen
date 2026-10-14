@@ -37,6 +37,7 @@ export interface Testimonial {
   readonly id: string;
   readonly name: string;
   readonly role: string;
+  readonly result: string;
   readonly company: string;
   readonly service: string;
   readonly quote: string;

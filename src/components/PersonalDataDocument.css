@@ -1,0 +1,65 @@
+.personal-data-page {
+    min-height: 100svh;
+    color: var(--blue);
+    background: #fff;
+    font-family: system-ui, sans-serif;
+}
+
+.personal-data-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding: 1.25rem var(--pad);
+    border-bottom: 1px solid var(--line);
+    font-size: .875rem;
+}
+
+.personal-data-header a {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    min-height: var(--touch-target);
+}
+
+.personal-data-header a:first-child {
+    font-weight: 700;
+}
+
+.personal-data-content {
+    width: min(100%, 52rem);
+    margin-inline: auto;
+    padding: clamp(2rem, 6vw, 5rem) var(--pad);
+    font-size: 1rem;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+}
+
+.personal-data-meta {
+    margin-bottom: 1.5rem;
+    font-size: .75rem;
+}
+
+.personal-data-content h1 {
+    margin: 0 0 2rem;
+    font-size: clamp(1.875rem, 5vw, 3.25rem);
+    line-height: 1.15;
+    letter-spacing: -.04em;
+}
+
+.personal-data-content h2 {
+    margin: 2rem 0 .75rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    letter-spacing: -.02em;
+}
+
+.personal-data-lead {
+    font-size: 1.125rem;
+}
+
+.personal-data-content a {
+    text-decoration: underline;
+    text-underline-offset: .2rem;
+}

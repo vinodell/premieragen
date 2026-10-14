@@ -7,13 +7,24 @@ export const Intro = () => {
     <section className="hero section-pad" aria-labelledby="hero-title">
       <div className="image-container">
         <div className="hero-visual">
+          <img
+            className="hero-backdrop"
+            src={HERO_IMAGE.backdropSrc}
+            alt=""
+            aria-hidden="true"
+            width={HERO_IMAGE.width}
+            height={HERO_IMAGE.height}
+            decoding="async"
+            fetchPriority="low"
+          />
           <picture>
             <source
               type="image/webp"
               srcSet={HERO_IMAGE.srcSet}
-              sizes="(max-width: 50em) 111vw, 100vw"
+              sizes="(max-width: 50em) 71vw, 65vw"
             />
             <img
+              className="hero-photo"
               src={HERO_IMAGE.src}
               alt={HERO_IMAGE.alt}
               width={HERO_IMAGE.width}

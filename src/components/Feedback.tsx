@@ -13,6 +13,9 @@ const FeedbackCard = ({ testimonial, index, total }: TestimonialCardProps) => {
       aria-label={`${index + 1} из ${total}: ${testimonial.name}`}
     >
       <header className="testimonial-context">
+        <span className="testimonial-number" aria-hidden="true">
+          {String(index + 1).padStart(2, "0")}
+        </span>
         <div className="testimonial-industry">
           <span className="testimonial-label">Область / компания</span>
           <h3>{testimonial.name}</h3>
@@ -23,9 +26,10 @@ const FeedbackCard = ({ testimonial, index, total }: TestimonialCardProps) => {
           <span className="testimonial-label">Направление работы</span>
           <p>{testimonial.service}</p>
         </div>
-        <span className="testimonial-number" aria-hidden="true">
-          {String(index + 1).padStart(2, "0")}
-        </span>
+        <div className="testimonial-direction">
+          <span className="testimonial-label">Результаты</span>
+          <p>{testimonial.result}</p>
+        </div>
       </header>
       <div className="testimonial-story">
         <span className="testimonial-quote-mark" aria-hidden="true">

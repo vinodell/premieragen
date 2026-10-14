@@ -34,6 +34,7 @@ export const SECTION_LABELS = {
 
 export const HERO_IMAGE = {
   src: `${process.env.PUBLIC_URL || ""}/hero.png`,
+  backdropSrc: `${process.env.PUBLIC_URL || ""}/hero-640.webp`,
   srcSet: [640, 960, 1171]
     .map(
       (width) => `${process.env.PUBLIC_URL || ""}/hero-${width}.webp ${width}w`,
@@ -287,9 +288,6 @@ export const SERVICES: readonly Service[] = [
   },
 ];
 
-// Ключ Web3Forms должен быть выпущен для адреса CONTACT_EMAIL.
-export const WEB_3_API_ACCESS_KEY = "9f101256-0d34-480c-82a5-c11a314fe841";
-
 export const PROOF_STATS: readonly ProofStat[] = [
   { value: "10+", label: "лет в маркетинге" },
   { value: "15 млрд ₽", label: "рекламных бюджетов" },
@@ -300,13 +298,28 @@ export const PROOF_STATS: readonly ProofStat[] = [
 export const CONTACT_EMAIL = "katieza@me.com";
 export const TELEGRAM_URL = "https://t.me/katieza";
 
+// Перед публикацией укажите полные ФИО / наименование и адрес оператора.
+export const PERSONAL_DATA_OPERATOR = {
+  name: BRAND.name,
+  address: "",
+  email: CONTACT_EMAIL,
+} as const;
+
+export const PERSONAL_DATA_CONSENT_VERSION = "2026-10-14";
+export const PERSONAL_DATA_RETENTION_DAYS = 90;
+export const PERSONAL_DATA_DOCUMENT_URLS = {
+  consent: `${process.env.PUBLIC_URL || ""}/#personal-data-consent`,
+  policy: `${process.env.PUBLIC_URL || ""}/#privacy-policy`,
+} as const;
+
 export const TESTIMONIALS: readonly Testimonial[] = [
   {
     id: "audit_1",
     name: "НЕДВИЖИМОСТЬ",
     role: "",
     company: "Девелопер / недвижимость",
-    service: "Рост лидов · CPA -20% · больше сделок",
+    service: "Аудит и точки роста",
+    result: "Рост лидов, оптимизация CPA -20%, больше конверсий в сделку",
     quote:
       "Сначала казалось, что проблема в объёме трафика. В итоге оказалось — в том, как мы его покупаем. Premier пересобрали рекламные кампании, адаптировали сайт под реальный путь клиента и оптимизировали CPA на 20%. При этом кратно выросло количество качественных лидов и сделок.",
   },
@@ -316,7 +329,8 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     role: "",
     company: "Дистрибуция автотранспортных средств",
     service:
-      "Масштабирование РК · рост лидов · повышена маржинальность сделок за счет сокращения ДРР (доля рекламных расходов)",
+      "Performance под ключ",
+    result: "Масштабирование РК, рост лидов, повышена маржинальность сделок за счет сокращения ДРР",
     quote:
       "До Premier мы просто старались получить больше лидов. Вместе с ними впервые начали смотреть на экономику целиком. Масштабировали рекламные кампании, перераспределили бюджет в пользу эффективных каналов и в итоге не только выросли в лидах, но и улучшили маржинальность.",
   },
@@ -326,7 +340,8 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     role: "",
     company: "Biotech / Биофармацевтика",
     service:
-      "Digital strategy · оптимизация воронки · эффективность отдачи бюджета",
+      "Digital strategy",
+    result: "Пересобрали рекламный инструментарий, оптимизировали воронку, повысили эффективность отдачи бюджета",
     quote:
       "Для нас было важно не просто увеличить объём трафика, а сохранить качество и управляемость результата. Команда Premier быстро погрузилась в специфику категории, пересобрала digital-воронку и предложила изменения на сайте. В результате получили более качественные лиды и существенно улучшили эффективность рекламных инвестиций.",
   },
@@ -335,7 +350,8 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     name: "RETAIL",
     role: "",
     company: "Retail / e-commerce",
-    service: "Адаптация сайта · рост лидов · оптимизация воронки",
+    service: "Аудит и точки роста",
+    result: "Адаптация сайта, SEO оптимизация, рост лидов, оптимизация воронки",
     quote:
       "Честно говоря, сначала мы думали, что нам просто нужно больше рекламы. Premier показали, где мы теряем клиента ещё до заявки. Адаптировали сайт, пересобрали рекламные кампании и наконец-то связали маркетинг с продажами. Лидов стало кратно больше, а главное — они стали заметно качественнее.",
   },
@@ -345,7 +361,8 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     role: "",
     company: "Retail / e-commerce",
     service:
-      " Performance · масштабирование · рост эффективности продаж через Яндекс Директ",
+      "Performance под ключ",
+    result: "Масштабирование бизнеса, рост эффективности продаж через Яндекс Директ",
     quote:
       "В агентстве очень быстро поняли наш бренд и при этом не стали делать маркетинг ради маркетинга. Пересобрали performance-часть, масштабировали кампании и помогли выстроить более эффективный customer journey. В итоге выросли и объёмы, и экономика — при этом сохранили необходимое нам качество люкс аудитории. С командой приятно работать - говорят на языке бизнеса",
   },
@@ -354,7 +371,8 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     name: "CEO / собственник бизнеса",
     role: "",
     company: "БтиЭ",
-    service: "Стратегия · performance · рост бизнеса",
+    service: "Digital strategy",
+    result: "Масштабирование бизнеса, рост ключевых метрик",
     quote:
       "Приятно поработать с ребятами из Яндекса - невозможно представить сколько они бы стоили в штате. Наконец-то появился подрядчик, который говорит не “давайте увеличим трафик”, а “давайте посмотрим, где вы теряете деньги”. После этого всё стало гораздо интереснее. Сначала я думал, что ребята просто хорошо умеют настраивать рекламу. Оказалось, что они гораздо глубже смотрят на бизнес. Где-то поменяли кампании, где-то сайт, где-то саму логику воронки. Сами настаивают на снижении бюджетов. Удивительно. В итоге кратно приросли в лидах и сделках, масштабировали РК и при этом не потеряли маржинальность.",
   },
@@ -473,11 +491,14 @@ export const SERVICE_DIAGRAM_CONNECTIONS: readonly ServiceDiagramConnection[] =
     { group: 5, paths: ["M 289 102 V 402 H 357"] },
   ];
 
-export const telegramApi = "https://premier.max-khamitov.workers.dev/";
-
 export interface NewClientPayload {
   readonly name: string;
   readonly email: string;
   readonly date: string;
   readonly feature: string;
+  readonly consent: {
+    readonly accepted: true;
+    readonly acceptedAt: string;
+    readonly version: string;
+  };
 }
